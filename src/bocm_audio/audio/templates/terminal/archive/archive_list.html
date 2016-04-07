@@ -1,0 +1,236 @@
+{% load static %}
+{% load url from future %}
+{% get_static_prefix as STATIC_PREFIX %}
+{% load audio_extras %}
+
+<script type="text/javascript">
+    function export_excel(){
+       // alert("test");
+        if(confirm(" 您确定要导出到excel吗?")){
+            var inputs = $("#archiveForm").serialize();
+            var url = '/archieves_export/?'+inputs;
+            location.href = url;
+            window.event.returnValue = false;
+        };
+    }
+    function delete_filter(){
+        if(confirm("您确定要删除符合搜索条件的记录吗?")){
+            if(confirm("删除资料是一个非常危险的动作,您确定要这么做吗?")){
+//                var inputs = $("#archiveForm").serialize();
+//                var url = '/archieves_deleteFilter/?'+inputs;
+//                location.href = url;
+//                window.event.returnValue = false;
+//                archiveForm.submit();
+                var data =$("#archiveForm").serializeArray();
+                $.post("/archieve_deleteFilter/",data,function(jsondata){
+                    var searchform=document.getElementById("archiveForm")
+                    return divSearch(searchform, 'archiveBox')
+                }, "json");
+
+            }
+
+        };
+    }
+</script>
+<style type="text/css">
+    .searchLable{
+        text-align: right;
+        float: left;
+        width:40px;
+    }
+</style>
+<form id="pagerForm" method="get" action="#rel#">
+	<input type="hidden" name="pageNum" value={{currentPage}} />
+	<input type="hidden" name="numPerPage" value={{numPerPage}} />
+	<input type="hidden" name="orderField" value="${param.orderField}" />
+	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+</form>
+
+<div class="pageHeader">
+	<form rel="pagerForm" id="archiveForm" onsubmit="return divSearch(this, 'archiveBox');"  action="/archive_search/" method="post">
+	{% csrf_token %}
+	<div class="searchBar">
+        <table class="searchContent" style="width: 900px;">
+            <tr>
+                <td>
+                    <input type="hidden" name="type" value='{{type|default_if_none:""}}'>
+                    <input type="hidden" name="obj_id" value='{{obj_id|default_if_none:""}}'>
+                    <label class="searchLable" >时间范围：</label>
+                    <!--时间范围：-->
+                    <input style="float: left" type="text" name="begin_time"  value="{{begin_time}}"  class="date" dateFmt="yyyy-MM-dd HH:mm:ss" readonly="true"/>
+                    <!--<a class="inputDateButton" href="javascript:;">选择</a>-->
+                    <label class="searchLable" style="width: 10px">~</label>
+                    <input style="float: left" type="text" name="end_time"  value="{{end_time}}"  class="date" dateFmt="yyyy-MM-dd HH:mm:ss" readonly="true"/>
+                    <!--<input type="text" name="end_time" value="{{end_time}}"/>-->
+                     <!--0：来电；1：去电 2：录音 3:未接-->
+                    <label class="searchLable">来去电类型:</label>
+
+                    <select  class="combox" name="archive_attr" style="float: left">
+                        {% ifequal archive_attr '-1' %}
+                        <option value="-1" selected="selected">所有</option>
+                        {% else %}
+                        <option value="-1" >所有</option>
+                        {% endifequal %}
+                        {% ifequal archive_attr '0' %}
+                        <option value="0" selected="selected">来电</option>
+                        {% else %}
+                        <option value="0" >来电</option>
+                        {% endifequal %}
+                        {% ifequal archive_attr '1' %}
+                        <option value="1" selected="selected">去电</option>
+                        {% else %}
+                        <option value="1" >去电</option>
+                        {% endifequal %}
+                        {% ifequal archive_attr '2' %}
+                        <option value="2" selected="selected">录音</option>
+                        {% else %}
+                        <option value="2" >录音</option>
+                        {% endifequal %}
+                    </select>
+                               <!--  -1:所有;1：日常沟通；2：销售 3：其他 -->
+                    <label class="searchLable" >通话类型:</label>
+                    <!--录音类型:-->
+                    <select   class="combox" name="archive_type" >
+                        {% ifequal archive_type '-1' %}
+                        <option value="-1" selected="selected">所有</option>
+                        {% else %}
+                        <option value="-1" >所有</option>
+                        {% endifequal %}
+                        {% ifequal archive_type '1' %}
+                        <option value="1" selected="selected">日常沟通</option>
+                        {% else %}
+                        <option value="1" >日常沟通</option>
+                        {% endifequal %}
+                        {% ifequal archive_type '2' %}
+                        <option value="2" selected="selected">销售</option>
+                        {% else %}
+                        <option value="2" >销售</option>
+                        {% endifequal %}
+                        {% ifequal archive_type '99' %}
+                        <option value="99" selected="selected">其他</option>
+                        {% else %}
+                        <option value="99" >其他</option>
+                        {% endifequal %}
+                    </select>
+                    <label class="searchLable" style="float: left">操作员:</label>
+                    <input style="float: left;width: 80px;" type="text" name="archive_operator" value="{{archive_operator}}" alt=""/>
+                </td>
+
+
+            </tr>
+            <tr>
+                <td>
+                    <label  style="float: left" class="searchLable" >客户名称：</label>
+                    <input  style="float: left" type="text" name="client_name" value="{{client_name}}" alt=""/>
+                    <label   style="float: left"   class="searchLable">客户ID：</label>
+                    <input  style="float: left"  type="text" name="client_clientid" value="{{client_clientid}}"  alt=""/>
+                    <label  style="float: left"   class="searchLable">备注：</label>
+                    <input style="float: left" type="text" name="archive_memo" value="{{archive_memo}}" alt=""/>
+                    <div style="float: left "  class="buttonActive"><div class="buttonContent"><button type="submit">检 索&nbsp; </button></div></div>
+                </td>
+
+            </tr>
+
+        </table>
+	
+    </div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+            {% ifequal user.user 'root' %}
+            <li><a title="确实要删除这些记录吗?" target="selectedTodo" rel="ids" href="/archive_deletemany/" class="delete"><span>删除选中</span></a></li>
+            <li><a  class="delete" href="javascript:void(0);" onclick="delete_filter()"><span>过滤删除</span></a></li>
+            {% endifequal  %}
+            <li><a class="icon" href="javascript:void(0);"  onclick="export_excel()" ><span>导出EXCEL</span></a></li>
+            <li class="line">line</li>
+            <li>
+                {% ifequal type '3' %}
+                <font color="red">{{terminal.org}}</font>
+                的话机<font color="red">{{terminal.user}}</font>
+                创建于:<font color="red">{{terminal.createtime|date:"Y-m-d H:m:s"}}</font>,
+                拥有文件个数<font color="red">{{total_count}}</font>个,
+                文件占用总空间为<font color="red">{{sum_size|filesizeformat}}</font>
+                {% endifequal  %}
+            </li>
+		</ul>
+	</div>
+    <div style="width: 99%;">
+        <table class="table" width="1000px" layoutH="200">
+		<thead>
+			<tr>
+				<th width="20"><input type="checkbox" group="ids" class="checkboxCtrl"></th>
+                <th width="20">编号</th>
+                <th width="30">操作</th>
+                <th width="50">客户名称</th>
+                <th width="50">操作员</th>
+				<th width="50">电话号码</th>
+				<!--<th width="50">文件名称</th>-->
+				<th width="50">文件大小</th>
+				<th width="50">录音时间</th>
+                <th width="50">时长</th>
+                <th width="50">上传时间</th>
+                <th width="50">来去电类型</th>
+                <th width="50">说明</th>
+
+                <th width="50">通话类型</th>
+				<th width="50">产品id号</th>
+                <th width="50">文件名称</th>
+                <th width="50">所属机构</th>
+                <th width="50">话机</th>
+                <th width="50">所属客户经理</th>
+                <th width="50">文件校验码</th>
+
+			</tr>
+		</thead>
+		<tbody>
+            {% for archive in obj_list %}
+			<tr target="sid_user" rel={{archive.id}}>
+                <td><input name="ids" value={{archive.id}} type="checkbox"></td>
+                <td>{% serial_number currentPage numPerPage forloop.counter %}</td>
+                <!--{{forloop.counter}}-->
+                <td>
+                    <!--<a title="下载" target="_blank" href="/archive_download/?id={{archive.id}}" class="btnSelect">下载</a>-->
+                    <a title="下载" target="_blank" href="/archive_download/?id={{archive.id}}"><img src="{{STATIC_PREFIX}}imgs/download.png" /></a>
+                    <a title="播放" target="dialog" href="/archive_play/?id={{archive.id}}"  width="420" height="420"><img src="{{STATIC_PREFIX}}imgs/play.png" /></a>
+                </td>
+                <td>{{archive.client.name|default_if_none:""}}</td>
+                <td>{{archive.operator|default_if_none:""}}</td>
+				<!--<td><input name="ids" value={{archive.id}} type="checkbox"></td>-->
+
+
+				<td>{{archive.phone}}</td>
+				<!--<td>{{archive.name|default_if_none:""}} </td>-->
+				<td>{{archive.size|filesizeformat}} </td>
+				<td>{{archive.rectime|date:"Y-m-d H:i:s"}}</td>
+                <td>{{archive.duration|duration_format}}</td>
+                <td>{{archive.uptime|date:"Y-m-d H:i:s"}}</td>
+                <td>
+                    {{archive.get_attr_display}}
+                </td>
+                <td>{{archive.memo|default_if_none:""}}</td>
+
+                <td>
+                    {{archive.get_type_display}}
+                </td>
+                <td>{{archive.productid|default_if_none:""}}</td>
+                <td>{{archive.name|default_if_none:""}}</td>
+                <td>{{archive.term.org|default_if_none:""}}</td>
+                <td>{{archive.term|default_if_none:""}}</td>
+                <td>{{archive.term.employee|default_if_none:""}}</td>
+                <td>{{archive.spx_digest|default_if_none:""}}</td>
+
+			</tr>
+            {% endfor %}
+		</tbody>
+	    </table>
+	</div>
+	<div class="panelBar">
+		<div class="pages">
+			<span>每页{{numPerPage}}条,共{{totalCount}}条,共{{pageCount}}页</span>
+		</div>
+		<div class="pagination" rel="archiveBox" totalCount={{totalCount}} numPerPage={{numPerPage}} pageNumShown={{pageNumShown}} currentPage={{currentPage}}></div>
+
+	</div>
+</div>

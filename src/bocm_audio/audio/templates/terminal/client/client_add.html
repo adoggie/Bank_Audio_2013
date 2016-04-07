@@ -1,0 +1,87 @@
+<div class="pageContent">
+	<form method="post" action="/client_add/" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+	{% csrf_token %}
+
+		<div class="pageFormContent" layoutH="56">
+	
+			<p>
+				<label>所属终端：</label>
+				<input type="hidden" name="client_term.id" value="{{client.term.id|default_if_none:''}}"/>
+				<input type="text" class="required" name="client_term.name" value="{{client.term|default_if_none:''}}" suggestFields="name" suggestUrl="/get_belong_terminal2/" lookupGroup="client_term" />
+			</p>
+			<p>
+				<label>客户编号：</label>
+                <input type="hidden" name="id" value="{{client.id|default_if_none:''}}"/>
+				<input name="sid" class="required" type="text" size="30" value="{{client.sid|default_if_none:''}}" alt=""/>
+			</p>
+			<p>
+				<label>客户名称：</label>
+				<input name="name" class="required" type="text" size="30" value="{{client.name|default_if_none:''}}" alt=""/>
+			</p>
+
+			<p>
+				<label>性别：</label>
+                <label>
+                <input type="radio" name="sex" value="1" >男</input>
+                <input type="radio" name="sex" value="2" />女</input>
+                </label>
+       				<!--<input name="sex" class="required" type="text" size="30" value="{{client.sex|default_if_none:''}}" alt=""/>-->
+			</p>
+            <p>
+                <label>公司：</label>
+                <input name="corp" class="" type="text" size="30" value="{{client.corp|default_if_none:''}}" alt=""/>
+            </p>
+            <p>
+                <label>电话1：</label>
+                <input name="phone1" class="phone" type="text" size="30" value="{{client.phone1|default_if_none:''}}" alt=""/>
+            </p>
+            <p>
+                <label>电话2：</label>
+                <input name="phone2" class="phone" type="text" size="30" value="{{client.phone2|default_if_none:''}}" alt=""/>
+            </p>
+            <p>
+                <label>地址：</label>
+                <input name="address" class="" type="text" size="30" value="{{client.address|default_if_none:''}}" alt=""/>
+            </p>
+            <p>
+                <label>邮编：</label>
+                <input name="postcode" class="digits" type="text" size="30" value="{{client.postcode|default_if_none:''}}" alt=""/>
+            </p>
+            <p>
+                <label>邮箱：</label>
+                <input name="email" class="email" type="text" size="30" value="{{client.email|default_if_none:''}}" alt=""/>
+            </p>
+            <p>
+                <label>网站：</label>
+                <input name="website" class="url" type="text" size="30" value="{{client.website|default_if_none:''}}" alt=""/>
+            </p>
+			<p>
+				<label>IM：</label>
+				<input name="im" class="" type="text" size="30" value="{{client.im|default_if_none:''}}" />
+			</p>
+            <p>
+                <label>说明：</label>
+                <input name="memo" class="" type="text" size="30" value="{{client.memo|default_if_none:''}}" alt=""/>
+            </p>
+            <p>
+                <label>身份证号：</label>
+                <input name="personid" class="digits" type="text" size="30" value="{{client.personid|default_if_none:''}}" alt=""/>
+            </p>
+            <p>
+                <label>客户ID号：</label>
+                <input name="clientid" class="" type="text" size="30" value="{{client.clientid|default_if_none:''}}" alt=""/>
+            </p>
+
+
+		</div>
+		<div class="formBar">
+			<ul>
+				<!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,10 @@
+cindiechen@hotmail.com
+
+增加 pc到话机命令：
+　　１.ｐｃ主动挂机　hangup
+     2. 来电时pc接听 hangon
+
+统一所有的消息头格式，1字节命令，2字节数据大小 
+
+2.话机软件必须保证 呼入、呼出操作 电话接通时，CMD_IND_NEWSERIALNUMBER 消息必须被传递给PC
+3. 消息 CMD_IND_NEWSERIALNUMBER和CMD_IND_HOOKON 需要添加一个属性,标识 通话类型，来电、去电还是其他

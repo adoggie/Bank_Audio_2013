@@ -1,0 +1,2 @@
+*/1 * * * * /svr/audio_clear.py
+

@@ -1,0 +1,41 @@
+BEGIN;
+CREATE TABLE "core_organization" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "name" varchar(80) NOT NULL,
+    "parent_id" integer
+)
+;
+CREATE TABLE "core_user" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "org_id" integer NOT NULL REFERENCES "core_organization" ("id"),
+    "user" varchar(30) NOT NULL,
+    "passwd" varchar(30) NOT NULL
+)
+;
+CREATE TABLE "core_terminal" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "org_id" integer NOT NULL REFERENCES "core_organization" ("id"),
+    "user" varchar(30) NOT NULL,
+    "passwd" varchar(30) NOT NULL,
+    "address" varchar(160) NOT NULL,
+    "phone" varchar(30) NOT NULL,
+    "postcode" varchar(20),
+    "employee" varchar(20),
+    "addition" text,
+    "creator_id" integer NOT NULL REFERENCES "core_user" ("id"),
+    "createtime" datetime NOT NULL,
+    "status" integer NOT NULL,
+    "regtime" datetime NOT NULL
+)
+;
+CREATE INDEX "core_organization_63f17a16" ON "core_organization" ("parent_id");
+CREATE INDEX "core_user_578d5ab7" ON "core_user" ("org_id");
+CREATE INDEX "core_user_4ff2ad42" ON "core_user" ("user");
+CREATE INDEX "core_user_52eda5f5" ON "core_user" ("passwd");
+CREATE INDEX "core_terminal_578d5ab7" ON "core_terminal" ("org_id");
+CREATE INDEX "core_terminal_4ff2ad42" ON "core_terminal" ("user");
+CREATE INDEX "core_terminal_52eda5f5" ON "core_terminal" ("passwd");
+CREATE INDEX "core_terminal_1811b445" ON "core_terminal" ("employee");
+CREATE INDEX "core_terminal_685aee7" ON "core_terminal" ("creator_id");
+CREATE INDEX "core_terminal_52295336" ON "core_terminal" ("createtime");
+COMMIT;

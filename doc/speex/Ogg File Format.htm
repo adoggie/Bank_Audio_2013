@@ -1,0 +1,361 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0062)http://www.digitalpreservation.gov/formats/fdd/fdd000026.shtml -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+	
+		<title>Ogg File Format</title>
+		<meta http-equiv="Content-Type" content="text/html; character=UTF-8">
+		<meta http-equiv="Content-Style-Type" content="text/css">
+		<meta name="description" content="Format Description for Ogg -- Wrapper format for Vorbis sound data and various other audiovisual bitstreams developed by the Xiph open source project.">
+		<meta name="keywords" content="Ogg">
+		<link rel="stylesheet" type="text/css" href="./Ogg File Format_files/deog.css" media="screen">
+		<script language="JavaScript" type="text/javascript">
+			<!--
+					var ANewWindow = null; //new
+					function openPWindow(theURL, winName, features) { //v2.0
+						// check if window already exists
+						if (!ANewWindow || ANewWindow.closed) {
+							// store new ANewWindow in global var
+							ANewWindow = window.open("phprint.php","Print","status=yes,scrollbars=yes,resizable=yes,toolbar=yes,menubar=yes,location=yes,width=600,height=600");
+						} else {
+							ANewWindow.location = theURL;
+							ANewWindow.focus();
+						}
+					}
+					-->
+		</script>
+		<script type="text/javascript" src="./Ogg File Format_files/triggerParams.js"></script>
+		<script type="text/javascript" src="./Ogg File Format_files/stdLauncher.js"></script>
+		<script type="text/javascript">Poll();</script>
+	<script type="text/javascript" src="./Ogg File Format_files/foresee-trigger.js"></script><script src="./Ogg File Format_files/foresee-surveydef.js" type="text/javascript" id="foresee-surveydef"></script><script src="./Ogg File Format_files/foresee-dhtml-popup.js" type="text/javascript" id="foresee-dhtml-popup"></script><link rel="stylesheet" media="screen" type="text/css" href="./Ogg File Format_files/foresee-dhtml.css"></head>
+	<body>
+		<!--This FDD was generated based on an XML master of the FDD schema and using an XSLT transformation.-->
+		
+<!-- begin page header -->
+
+
+	<table cellpadding="3" cellspacing="0" border="0" width="100%" class="header-bg">
+        <tbody><tr valign="top">
+          <td class="header">&nbsp;</td>
+          <td align="right"> 
+            <div align="right" class="header"><a href="http://www.digitalpreservation.gov/">NDIIPP Home</a> | <a href="http://www.digitalpreservation.gov/formats/index.shtml">Digital Formats Home</a>&nbsp;&nbsp;&nbsp;</div>
+          </td>
+        </tr>
+     </tbody></table>
+	 
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="title-bg">
+	<tbody><tr>
+      <td class="title-bg" align="left" valign="middle">
+<h1>&nbsp;<a href="http://www.digitalpreservation.gov/formats/index.shtml">Sustainability of Digital Formats<br>&nbsp;Planning for Library of Congress Collections</a></h1>
+</td>
+
+<td align="right" class="form">
+<form action="http://search.loc.gov:8765/query.html" class="form">
+<input id="searchbox" type="text" name="qt" size="15" maxlength="150" class="formtext"> 
+<input type="submit" class="go" value="Go">
+<input type="hidden" name="col" value="loc">
+<input type="hidden" name="qp" value="url:www.digitalpreservation.gov/formats">
+<input type="hidden" name="ws" value="0">
+<input type="hidden" name="la" value="en">
+<input type="hidden" name="qm" value="0">
+<input type="hidden" name="st" value="1">
+<input type="hidden" name="nh" value="10">
+<input type="hidden" name="lk" value="1">
+<input type="hidden" name="rf" value="0">
+<input type="hidden" name="oq" value="">
+<input type="hidden" name="rq" value="0">
+<input type="hidden" name="si" value="0">
+</form>
+</td>
+ </tr>
+		
+        <tr> 
+          <td colspan="2" class="empty-space-format"><img src="./Ogg File Format_files/horzgif.gif" alt="" width="100%" height="2"></td>
+        </tr>
+		<tr>
+    <td colspan="2" class="formatNav"><a href="http://www.digitalpreservation.gov/formats/intro/intro.shtml">Introduction</a> | <a href="http://www.digitalpreservation.gov/formats/sustain/sustain.shtml">Sustainability Factors</a> | <a href="http://www.digitalpreservation.gov/formats/content/content_categories.shtml">Content Categories</a> | 
+	<a href="http://www.digitalpreservation.gov/formats/fdd/descriptions.shtml">Format Descriptions</a> | <a href="http://www.digitalpreservation.gov/formats/contact_format.shtml">Contact</a></td>
+  </tr>
+<!--
+  <tr>
+    <td height="20" colspan="3" align="right" bgcolor="#ffffff"> <a href="http://www.digitalpreservation.gov/formats/phprint_formats.php" target="Print" onClick="openPWindow(); ANewWindow.focus();" class="xsmall"><img src="http://www.digitalpreservation.gov/formats/print.gif" alt="Printer-friendly version" border="0" align="middle">Printer-friendly version</a>&nbsp;&nbsp;&nbsp;</td>
+  </tr>-->
+      </tbody></table>
+		
+<!-- end page header -->
+		<!--begin body area -->
+		<!-- startprint -->
+		<div class="fdd"><a href="http://www.digitalpreservation.gov/formats/fdd/descriptions.shtml"><b>Format Description Categories</b></a> &gt;&gt; 
+					<a href="http://www.digitalpreservation.gov/formats/fdd/browse_list.shtml">Browse Alphabetical List</a><div class="sectionhead"><a name="top"></a><h2>Ogg File Format</h2>
+			</div><a href="javascript:history.back()" class="xsmall">&gt;&gt; Back</a><div class="toc"><b>Table of Contents</b><ul>
+					<li class="first"><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000026.shtml#identification">Identification and description</a></li>
+					<li><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000026.shtml#local">Local use</a></li>
+					<li><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000026.shtml#sustainability">Sustainability factors</a></li>
+					<li><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000026.shtml#factors">Quality and functionality factors</a></li>
+					<li><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000026.shtml#sign">File type signifiers</a></li>
+					<li><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000026.shtml#notes">Notes</a></li>
+					<li><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000026.shtml#specs">Format specifications</a></li>
+					<li class="last"><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000026.shtml#useful">Useful references</a></li>
+				</ul>
+			</div>
+			<div class="document"><b>
+							Format Description Properties
+							<a href="http://www.digitalpreservation.gov/formats/fdd/fdd_explanation.shtml"><img alt="Explanation of format description terms" title="Explanation of format description terms" src="./Ogg File Format_files/info.gif" border="0" vspace="0"></a></b><ul>
+					<li class="first">ID: fdd000026</li>
+					<li>Short name: Ogg</li>
+					<li>Content categories: 
+								sound, moving-image</li>
+					<li>Format Category:
+								file-format</li>
+					<li>Other facets: 
+								container-wrapper, binary</li>
+					<li>Last significant update:
+								2008-02-19</li>
+					<li class="last">Draft status: Full</li>
+				</ul>
+			</div><br clear="all"><a name="identification"></a><h3>Identification and description 
+						<a href="http://www.digitalpreservation.gov/formats/fdd/fdd_explanation.shtml#identification"><img alt="Explanation of format description terms" title="Explanation of format description terms" src="./Ogg File Format_files/info.gif" border="0" vspace="0"></a></h3>
+			<table border="1" cellspacing="0" cellpadding="2" width="90%" summary="The Identification and Description table lists the name of the format, a brief description, and relationships to other formats.">
+				<tbody>
+					<tr>
+						<th scope="row" width="30%" valign="top">Full name</th>
+						<td valign="top">Ogg File Format</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Description</th>
+						<td valign="top">Wrapper format for Vorbis sound data and various other audiovisual bitstreams developed by the Xiph open source project. The Xiph Web site calls the format a "<a href="http://xiph.org/ogg/">container</a>" and also an "<a href="http://www.xiph.org/ogg/doc">encapsulation format</a>" ("version 0").</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Production phase</th>
+						<td valign="top">Generally used for final-state, end-user delivery.</td>
+					</tr>
+					<tr>
+						<th class="subhead" scope="col" colspan="2">Relationship to other formats</th>
+					</tr>
+					<tr>
+						<th scope="row" width="30%">
+					&nbsp;&nbsp;&nbsp;&nbsp;Has subtype</th>
+						<td><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000117.shtml">Ogg_Vorbis</a>, 
+						Ogg Vorbis Audio Format</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%">
+					&nbsp;&nbsp;&nbsp;&nbsp;Has subtype</th>
+						<td><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000227.shtml">Ogg_FLAC_1_0</a>, 
+						Ogg FLAC Audio Format, Version 1.0</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%">
+					&nbsp;&nbsp;&nbsp;&nbsp;Has subtype</th>
+						<td><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000260.shtml">Ogg_SPX</a>, 
+						Ogg Speex Audio Format</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%">
+					&nbsp;&nbsp;&nbsp;&nbsp;Has subtype</th>
+						<td><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000261.shtml">Ogg_Theora</a>, 
+						Ogg Theora Video Format</td>
+					</tr>
+				</tbody>
+			</table><br><a name="local"></a><h3>Local use 
+						<a href="http://www.digitalpreservation.gov/formats/fdd/fdd_explanation.shtml#local"><img alt="Explanation of format description terms" title="Explanation of format description terms" src="./Ogg File Format_files/info.gif" border="0" vspace="0"></a></h3>
+			<table border="1" cellspacing="0" cellpadding="2" width="90%" summary="The Local Use table lists any actual practice, historical use, or stated preference for this format at the Library of Congress.">
+				<tbody>
+					<tr>
+						<th scope="row" width="30%" valign="top">LC experience or existing holdings</th>
+						<td valign="top">In 2007, consideration was being given to the use of <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000260.shtml">Ogg_SPX</a> for service copies of oral history recordings for access via the Web.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">LC preference</th>
+						<td valign="top"><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000002.shtml">WAVE_LCPM</a> preferred for master copies of waveform sound.</td>
+					</tr>
+				</tbody>
+			</table><br><a name="sustainability"></a><h3>Sustainability factors
+						<a href="http://www.digitalpreservation.gov/formats/fdd/fdd_explanation.shtml#sustainability"><img alt="Explanation of format description terms" title="Explanation of format description terms" src="./Ogg File Format_files/info.gif" border="0" vspace="0"></a></h3>
+			<table border="1" cellspacing="0" cellpadding="2" width="90%" summary="The Sustainability Factors table provides a list of notes that analyze this format in terms of factors that influence the likely feasibility and cost of preserving information against technological obsolescence.">
+				<tbody>
+					<tr>
+						<th scope="row" width="30%" valign="top">Disclosure</th>
+						<td valign="top">Fully documented. Developed by <a href="http://www.xiph.org/">xiph</a> as an open source and patent-free project.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;Documentation</th>
+						<td valign="top">Menu to Ogg <a href="http://www.xiph.org/vorbis/doc/">documentation</a>; see also Ogg <a href="http://www.xiph.org/vorbis/doc/oggstream.html">logical and physical bitstream overview </a>and
+Ogg <a href="http://www.xiph.org/vorbis/doc/framing.html">logical bitstream framing</a>.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Adoption</th>
+						<td valign="top">Ogg is the <a href="http://commons.wikimedia.org/wiki/Commons:Contributing_your_own_work">recommended format for audio and video on Wikimedia Commons</a> because it is unencumbered by patents.  Firefox 3.1 (in beta as of February 2009) has native support for the Ogg audio and video formats.  </td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;Licensing and patents</th>
+						<td valign="top">None.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Transparency</th>
+						<td valign="top">The wrapper is transparent; the encodings it contains depend upon algorithms and tools to read and require sophistication to build tools.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Self-documentation</th>
+						<td valign="top">Includes internal headers and identifiers (signifiers) for the technical information needed by player software.  No provision for descriptive or administrative metadata was apparent; <a href="http://www.digitalpreservation.gov/formats/contact_format.shtml">Comments welcome</a>.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">External dependencies</th>
+						<td valign="top">None.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Technical protection considerations</th>
+						<td valign="top">None known to the compilers of this document.</td>
+					</tr>
+				</tbody>
+			</table><br><a name="factors"></a><h3>Quality and functionality factors
+						<a href="http://www.digitalpreservation.gov/formats/fdd/fdd_explanation.shtml#factors"><img alt="Explanation of format description terms" title="Explanation of format description terms" src="./Ogg File Format_files/info.gif" border="0" vspace="0"></a></h3>
+			<table border="1" cellspacing="0" cellpadding="2" width="90%" summary="The Quality and Functionality Factors table assesses the format in relation to functional support for features and aspects that can affect the quality of content (such as bit-depth for representation of color or sound).">
+				<tbody>
+					<tr>
+						<th class="subhead" scope="col" colspan="2">Moving Image</th>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Normal rendering</th>
+						<td valign="top">See <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000261.shtml">Ogg_Theora</a>.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Clarity (high image resolution)</th>
+						<td valign="top">See <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000261.shtml">Ogg_Theora</a>.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Functionality beyond normal rendering</th>
+						<td valign="top">Not investigated at this time.</td>
+					</tr>
+					<tr>
+						<th class="subhead" scope="col" colspan="2">Sound</th>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Normal rendering</th>
+						<td valign="top">See <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000117.shtml">Ogg_Vorbis</a> and <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000260.shtml">Ogg_SPX</a>.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Fidelity (high audio resolution)</th>
+						<td valign="top">See <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000117.shtml">Ogg_Vorbis</a> and <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000260.shtml">Ogg_SPX</a>.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Multiple channels</th>
+						<td valign="top">See <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000117.shtml">Ogg_Vorbis</a> and <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000260.shtml">Ogg_SPX</a>.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Support for user-defined sounds, samples, and patches</th>
+						<td valign="top">See <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000117.shtml">Ogg_Vorbis</a> and <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000260.shtml">Ogg_SPX</a>.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Functionality beyond normal rendering</th>
+						<td valign="top">Not investigated at this time.</td>
+					</tr>
+				</tbody>
+			</table><br><a name="sign"></a><h3>File type signifiers
+						<a href="http://www.digitalpreservation.gov/formats/fdd/fdd_explanation.shtml#sign"><img alt="Explanation of format description terms" title="Explanation of format description terms" src="./Ogg File Format_files/info.gif" border="0" vspace="0"></a></h3>
+			<table border="1" cellspacing="0" cellpadding="2" width="90%" summary="The File Type Signifiers table documents some of the signifiers that may be used by automated systems to identify or characterize a file or the data encodings contained within a file.">
+				<tbody>
+					<tr>
+						<th scope="col">Tag</th>
+						<th scope="col">Value</th>
+						<th scope="col">Note</th>
+					</tr>
+					<tr>
+						<th scope="row" width="15%" valign="top">Filename extension</th>
+						<td width="15%" valign="top">ogg<br></td>
+						<td valign="top">From <a href="http://filext.com/">The File Extension Source</a></td>
+					</tr>
+					<tr>
+						<th scope="row" width="15%" valign="top">Internet Media Type</th>
+						<td width="15%" valign="top">application/ogg<br></td>
+						<td valign="top">Cited type from <a href="http://www.ietf.org/rfc/rfc3534.txt">http://www.ietf.org/rfc/rfc3534.txt</a>.  Other types used for specific implementations; see <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000117.shtml">Ogg_Vorbis</a> and <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000260.shtml">Ogg_SPX</a>.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="15%" valign="top">Internet Media Type</th>
+						<td width="15%" valign="top">audio/x-ogg<br>application/x-ogg<br></td>
+						<td valign="top">From <a href="http://filext.com/">The File Extension Source</a>.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="15%" valign="top">Magic numbers</th>
+						<td width="15%" valign="top">Hex: 4F 67 67 53 00 02 00 00 00 00 00 00 00 00<br>ASCII: OggS<br></td>
+						<td valign="top">From <a href="http://filext.com/">The File Extension Source</a>.  See also <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000026.shtml#notes">Notes</a> below.</td>
+					</tr>
+				</tbody>
+			</table><br><a name="notes"></a><h3>Notes
+						<a href="http://www.digitalpreservation.gov/formats/fdd/fdd_explanation.shtml#notes"><img alt="Explanation of format description terms" title="Explanation of format description terms" src="./Ogg File Format_files/info.gif" border="0" vspace="0"></a></h3>
+			<table border="1" cellspacing="0" cellpadding="2" width="90%" summary="The Notes table includes informative notes about the format that do not fit elsewhere in the Format Description Document.">
+				<tbody>
+					<tr>
+						<th scope="row" width="30%" valign="top">General</th>
+						<td valign="top">
+							<p>From <a href="http://www.ietf.org/rfc/rfc3533.txt">The Ogg Encapsulation Format Version 0</a>:</p>
+							<p>
+ The fields in the page header have the following meaning: </p>
+							<ul>
+								<li>1. capture_pattern: a 4 Byte field that signifies the beginning of a page.  It contains the magic numbers:<br>0x4f 'O'<br>0x67 'g'<br>0x67 'g'<br>0x53 'S'<br>It helps a decoder to find the page boundaries and regain synchronisation after parsing a corrupted stream.  Once the capture pattern is found, the decoder verifies page sync and integrity by computing and comparing the checksum.</li>
+								<li>2. stream_structure_version: 1 Byte signifying the version number of the Ogg file format used in this stream (this document specifies version 0).</li>
+								<li>3. header_type_flag: the bits in this 1 Byte field identify the specific type of this page.
+									<ul>
+										<li>bit 0x01<br>
+set: page contains data of a packet continued from the previous page<br>
+unset: page contains a fresh packet</li>
+										<li>bit 0x02<br>
+set: this is the first page of a logical bitstream (bos)<br>
+unset: this page is not a first page</li>
+										<li>bit 0x04<br>
+set: this is the last page of a logical bitstream (eos)<br>
+unset: this page is not a last page </li>
+									</ul>
+								</li>
+								<li>4. granule_position: an 8 Byte field containing position information. For example, for an audio stream, it MAY contain the total number of PCM samples encoded after including all frames finished on this page.  For a video stream it MAY contain the total number of video frames encoded after this page.  This is a hint for the decoder and gives it some timing and position information.  Its meaning is dependent on the codec for that logical bitstream and specified in a specific media mapping.  A special value of -1 (in two's complement) indicates that no packets finish on this page.</li>
+								<li>5. bitstream_serial_number: a 4 Byte field containing the unique serial number by which the logical bitstream is identified.</li>
+								<li>6. page_sequence_number: a 4 Byte field containing the sequence number of the page so the decoder can identify page loss.  This sequence number is increasing on each logical bitstream separately.</li>
+								<li>7. CRC_checksum: a 4 Byte field containing a 32 bit CRC checksum of the page (including header with zero CRC field and page content). The generator polynomial is 0x04c11db7.</li>
+								<li>8. number_page_segments: 1 Byte giving the number of segment entries encoded in the segment table.</li>
+								<li>9. segment_table: number_page_segments Bytes containing the lacing values of all segments in this page.  Each Byte contains one lacing value.</li>
+							</ul>
+							<p>The total header size in bytes is given by: header_size = number_page_segments + 27 [Byte]<br>
+The total page size in Bytes is given by: page_size = header_size + sum(lacing_values: 1..number_page_segments) [Byte] </p>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">History</th>
+						<td valign="top">&nbsp;</td>
+					</tr>
+				</tbody>
+			</table><br><a name="specs"></a><h3>Format specifications 
+						<a href="http://www.digitalpreservation.gov/formats/fdd/fdd_explanation.shtml#specs"><img alt="Explanation of format description terms" title="Explanation of format description terms" src="./Ogg File Format_files/info.gif" border="0" vspace="0"></a></h3>
+			<ul>
+				<li><a href="http://www.xiph.org/vorbis/doc/">Ogg Vorbis documentation menu</a> (http://www.xiph.org/vorbis/doc/).</li>
+				<li><a href="http://www.xiph.org/vorbis/doc/oggstream.html">Ogg logical and physical bitstream overview</a> (http://www.xiph.org/vorbis/doc/oggstream.html).</li>
+				<li><a href="http://www.xiph.org/vorbis/doc/framing.html">Ogg logical bitstream framing</a> (http://www.xiph.org/vorbis/doc/framing.html).</li>
+				<li><a href="http://www.ietf.org/rfc/rfc3533.txt">The Ogg Encapsulation Format Version 0,
+May 2003</a> (http://www.ietf.org/rfc/rfc3533.txt).</li>
+				<li><a href="http://www.ietf.org/rfc/rfc3534.txt">The application/ogg Media Type,
+May 2003</a> (http://www.ietf.org/rfc/rfc3534.txt).</li>
+			</ul><br><a name="useful"></a><h3>Useful references</h3><b>URLs</b><br><ul>
+				<li><a href="http://wiki.xiph.org/index.php/Main_Page">Xiph wiki</a> (http://wiki.xiph.org/index.php/Main_Page).</li>
+			</ul><br><!-- stopprint --><br><div align="right" class="update">Last Updated: 
+				
+				Tuesday, 10-Feb-2009 15:01:29 EST
+			</div><br></div>
+		<!-- end body area -->
+		<!-- begin footer table -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr> 
+    <td class="footer-bg"> 
+	<table cellpadding="3" cellspacing="0" border="0" width="100%" class="header-bg">
+        <tbody><tr valign="top">
+          <td class="header">&nbsp;</td>
+          <td align="right"> 
+            <div align="right" class="header"><a href="http://www.digitalpreservation.gov/">NDIIPP Home</a> | <a href="http://www.digitalpreservation.gov/formats/index.shtml">Digital Formats Home</a>&nbsp;&nbsp;&nbsp;</div>
+          </td>
+        </tr>
+     </tbody></table>
+	</td>
+  </tr>
+</tbody></table>
+<!-- end footer table -->
+
+	<script type="text/javascript" src="./Ogg File Format_files/s_code.js"></script>
+</body></html>

@@ -1,0 +1,57 @@
+<div class="pageContent">
+<form method="post" action="/user_add/" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+	{% csrf_token %}
+
+		<div class="pageFormContent" layoutH="56">
+			<p>
+				<label>所属机构：</label>
+                {% ifequal opMethod "add" %}
+                <input type="hidden" name="org_parent.id" value={{parent_org.id}} />
+                <input type="text" class="" name="org_parent.name" value={{parent_org.name}} readonly="readonly" />
+                {% else %}
+                <input type="hidden" name="org_parent.id" value="{{user.org.id}}"/>
+                <input type="text" class="required" name="org_parent.name" value="{{user.org|default_if_none:''}}" readonly="readonly" />
+                {% endifequal %}
+			</p>	
+
+			<p>
+				<label>账号：</label>
+                <input type="hidden" name="id" value="{{user.id|default_if_none:''}}"/>
+				<input name="username" class="required" type="text" size="30" maxlength="40" value="{{user.user|default_if_none:''}}"  alt=""/>
+			</p>
+            <p>
+                <label>密码：</label>
+                <input name="password" class="required" type="password" size="30" minlength="6" maxlength="20" value="{{user.passwd|default_if_none:''}}" alt=""/>
+            </p>
+            <p>
+                <label>姓名：</label>
+                <input name="name" class="required" type="text" size="30" maxlength="40" value="{{user.name|default_if_none:''}}" alt=""/>
+            </p>
+            <p>
+                <label>联系方式：</label>
+                <input name="phone" class="" type="text" size="30"  maxlength="30" value="{{user.phone|default_if_none:''}}" alt=""/>
+            </p>
+            <p>
+                <label>详细地址：</label>
+                <input name="address" class="" type="text" size="30" maxlength="120" value="{{user.address|default_if_none:''}}" alt=""/>
+            </p>
+            <p>
+                <label>邮箱：</label>
+                <input name="email" class="email" type="text" size="30" maxlength="40" value="{{user.email|default_if_none:''}}" alt=""/>
+            </p>
+
+
+
+
+		</div>
+		<div class="formBar">
+			<ul>
+				<!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

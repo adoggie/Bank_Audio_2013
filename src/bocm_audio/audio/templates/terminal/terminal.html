@@ -1,0 +1,81 @@
+{% load static %}
+{% load url from future %}
+{% get_static_prefix as STATIC_PREFIX %}
+<div class="pageContent" style="padding:5px">
+    <div layoutH="20" style="float:left; display:block; overflow:auto; width:200px; border:solid 1px #CCC; line-height:21px; background:#fff">
+        <div class="left">
+            <ul id="terminal_org_tree" class="ztree"></ul>
+        </div>
+    </div>
+
+    <div id="terminalBox" class="unitBox" style="margin-left:206px;">
+        <!--#include virtual="terminal_list.html" -->
+    </div>
+
+</div>
+<SCRIPT type="text/javascript">
+    <!--
+
+
+    function myOnClickCallback(event, treeId, treeNode, clickFlag) {
+//        alert(treeNode.obj_id);
+        var objid= treeNode.id;
+//        alert(treeNode.selfRel+"  "+treeNode.selfUrl +"  "+treeNode.selfTarget);
+        var rel = treeNode.selfRel;
+        var $rel = $("#"+rel);
+        $rel.loadUrl(treeNode.selfUrl+"?org_id="+objid, {}, function(){
+            $rel.find("[layoutH]").layoutH();
+        });
+    }
+
+    $(document).ready(function(){
+        var setting = {
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            callback: {
+                onClick: myOnClickCallback
+            }
+        };
+        var url = "/get_org_tree_json/?time="+(new Date()).valueOf();
+        $.getJSON(url, function(jsondata) {
+            var zNodes = [];
+//            alert(jsondata.orgs_tree);
+            var orgs_tree = jsondata.orgs_tree;
+
+            if(orgs_tree.length>0){
+                for(var i=0;i<orgs_tree.length;i++){
+//                    alert(orgs_tree[i].fields.parent);
+                    var pid;
+                    if(orgs_tree[i].fields.parent){
+                        pid =orgs_tree[i].fields.parent;
+                    }else{
+                        pid =0;
+                    }
+                    var node ={
+                        id:orgs_tree[i].pk,
+                        pId:pid,
+                        name:orgs_tree[i].fields.name,
+//                        obj_id:orgs_tree[i].fields.obj_id,
+                        icon:"{{STATIC_PREFIX}}js/ztree_v3.5.12/css/zTreeStyle/img/diy/org.png",
+                        selfUrl:"{% url 'terminal_list' %}",
+                        selfRel:"terminalBox",
+                        selfTarget:'ajax'
+
+                    };
+                    zNodes.push(node);
+                }
+            }
+            $.fn.zTree.init($("#terminal_org_tree"), setting, zNodes);
+        })
+
+    });
+    //-->
+
+
+</SCRIPT>
+
+	
+

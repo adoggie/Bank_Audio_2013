@@ -1,0 +1,78 @@
+
+
+
+big and little endian
+   0x11223344 
+   文件字节流存储
+		big: 11 22 33 44
+		little: 44 33 22 11
+
+1.话机密码 
+	4位数字长度
+	
+	if(passInt>9999) lenth = 5;
+    else lenth = 4;
+	
+    PasswordBuf[0] = passInt/1000;
+    PasswordBuf[1] = (passInt%1000)/100;
+    PasswordBuf[2] = (passInt%100)/10;
+    PasswordBuf[3] = passInt%10;
+	
+	所以上位机下发 控制命令设置密码 命令字节顺序是 big endian
+
+
+
+usb 接口操作：
+
+   SI_FlushBuffers(m_hUSBDevice,0,0);       //清零 Device 和 HOST 缓冲区
+    
+	CommonBuf[0]=CMD_GET_Password;      //获取密码命令
+	if(SI_Write(m_hUSBDevice, CommonBuf, CMD_GET_Password_size, &dwBytesWritten)==SI_SUCCESS)
+
+si_xxxx
+---------
+	SI_SetTimeouts(10000, 10000);
+	SI_Open
+	SI_Write
+	SI_Read
+	SI_FlushBuffers
+	SI_Close
+	SI_GetNumDevices
+
+	
+设备操作命令：
+－－－－－－－－－－－－
+    //PC命令定义
+    #define CMD_GET_Filenumber   0x01 //获取文件的的个数
+    #define CMD_GET_Fileinfo     0x02 //获取某个文件的信息
+    #define CMD_GET_Filecontent  0x03 //获取某个文件的内容
+    #define CMD_GET_Password     0x04 //获取下位机密码
+    #define CMD_GET_SerialNumber 0x05 //获取录音文件的最新唯一号
+    #define CMD_GET_USERCODE     0x06 //获取话机配置的用户号码
+    #define CMD_SET_USERCODE     0x07 //设置话机的用户号码
+    #define CMD_GET_PhoneState   0x08 //获取话机的状态
+
+    //PC命令长度定义（长度根据使用的方便定义的有可能有冗余数据）
+    #define CMD_GET_Filenumber_Size   0x8 // 写入CMD_GET_Filenumber命令数据的长度
+    #define CMD_GET_Fileinfo_Size     0x8 // 写入CMD_GET_Fileinfo命令数据的长度
+    #define CMD_GET_Filecontent_Size  0x8 // 写入CMD_GET_Filecontent命令数据的长度
+    #define CMD_GET_Password_size     0x8 // 写入CMD_GET_Password命令数据的长度
+    #define CMD_GET_SerialNumber_Size 0x8 // 写入CMD_GET_SerialNumer命令数据的长度
+    #define CMD_GET_USERCODE_Size     0x8 // 写入CMD_GET_USERCODE命令数据的长度
+    #define CMD_SET_USERCODE_Size     0x8 // 写入CMD_SET_USERCODE命令数据的长度
+    #define CMD_GET_PhoneState_Size   0x8 // 写入CMD_GET_PhoneState命令数据的长度
+
+    //获取的下位机数据的长度定义（长度根据使用的方便定义的有可能有冗余数据）
+    #define GET_Filenumber_Size   2    // 读取的文件序号的长度
+    #define GET_Fileinfo_Size     32   // 读取的文件信息的长度  19
+    #define GET_Password_SIZE     4    // 读取的密码的长度
+    #define GET_SerialNumber_Size 4    //读取录音文件最新的唯一号的长度
+    #define GET_USERCODE_Size     4    //读取话机配置的用户代码的长度
+    #define GET_PhoneState_Size   4    //读取话机状态的长度
+
+
+    #define MAX_PACKET_SIZE_WRITE 64  //最大的写入封包
+
+    #define MAX_PACKET_SIZE_READ  512 //最大的读出封包
+
+       

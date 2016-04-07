@@ -1,0 +1,85 @@
+<div class="pageContent">
+    <form method="post" action="/archive_add/" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+        {% csrf_token %}
+
+        <div class="pageFormContent" layoutH="56">
+
+            <p>
+                <label>所属终端：</label>
+                <input type="hidden" name="archive_term.id" value="{{archive.term.id}}"/>
+                <input type="text" class="required" name="archive_term.name" value="{{archive.term|default_if_none:''}}" suggestFields="id,name" suggestUrl="/get_archive_objs/" lookupGroup="archive_term" />
+            </p>
+            <p>
+                <label>客户编号：</label>
+                <input type="hidden" name="id" value="{{archive.id|default_if_none:''}}"/>
+                <input name="sid" class="required" type="text" size="30" value="{{archive.sid|default_if_none:''}}" alt="请输入机构名称"/>
+            </p>
+            <p>
+                <label>客户名称：</label>
+                <input name="name" class="required" type="text" size="30" value="{{archive.name|default_if_none:''}}" alt="请输入联系方式"/>
+            </p>
+
+            <p>
+                <label>性别：</label>
+                <label><input type="radio" name="sex" value="1" />男</label>
+                <label><input type="radio" name="sex" value="2" />女</label>
+                <!--<input name="sex" class="required" type="text" size="30" value="{{archive.sex|default_if_none:''}}" alt="请输入地址"/>-->
+            </p>
+            <p>
+                <label>公司：</label>
+                <input name="corp" class="required" type="text" size="30" value="{{archive.corp|default_if_none:''}}" alt="请输入地址"/>
+            </p>
+            <p>
+                <label>电话1：</label>
+                <input name="phone1" class="required phone" type="text" size="30" value="{{archive.phone1|default_if_none:''}}" alt="请输入地址"/>
+            </p>
+            <p>
+                <label>电话2：</label>
+                <input name="phone2" class="required phone" type="text" size="30" value="{{archive.phone2|default_if_none:''}}" alt="请输入地址"/>
+            </p>
+            <p>
+                <label>地址：</label>
+                <input name="address" class="required" type="text" size="30" value="{{archive.address|default_if_none:''}}" alt="请输入地址"/>
+            </p>
+            <p>
+                <label>邮编：</label>
+                <input name="postcode" class="required digits" type="text" size="30" value="{{archive.postcode|default_if_none:''}}" alt="请输入地址"/>
+            </p>
+            <p>
+                <label>邮箱：</label>
+                <input name="email" class="required email" type="text" size="30" value="{{archive.email|default_if_none:''}}" alt="请输入地址"/>
+            </p>
+            <p>
+                <label>网站：</label>
+                <input name="website" class="required url" type="text" size="30" value="{{archive.website|default_if_none:''}}" alt="请输入地址"/>
+            </p>
+            <p>
+                <label>IM：</label>
+                <input name="im" class="required" type="text" size="30" value="{{archive.im|default_if_none:''}}" />
+            </p>
+            <p>
+                <label>说明：</label>
+                <input name="memo" class="required" type="text" size="30" value="{{archive.memo|default_if_none:''}}" alt="请输入地址"/>
+            </p>
+            <p>
+                <label>身份证号：</label>
+                <input name="personid" class="required digits" type="text" size="30" value="{{archive.personid|default_if_none:''}}" alt="请输入地址"/>
+            </p>
+            <p>
+                <label>客户ID号：</label>
+                <input name="archiveid" class="required" type="text" size="30" value="{{archive.archiveid|default_if_none:''}}" alt="请输入地址"/>
+            </p>
+
+
+        </div>
+        <div class="formBar">
+            <ul>
+                <!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
+                <li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+                <li>
+                    <div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>

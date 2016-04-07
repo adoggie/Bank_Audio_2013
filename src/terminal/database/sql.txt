@@ -1,0 +1,100 @@
+BEGIN;
+CREATE TABLE "core_audiofile" (
+    "digest" varchar(80) NOT NULL,
+    "spxfile" varchar(30) NOT NULL,
+    "filetime" integer NOT NULL,
+    "duration" integer NOT NULL,
+    "status" integer NOT NULL,
+    "uptime" integer NOT NULL,
+    "serial" integer NOT NULL,
+    "attr" integer NOT NULL,
+    "phone" varchar(30) NOT NULL,
+    "client_sid" varchar(40),
+    "memo" text,
+    "memo_status" integer NOT NULL,
+    "type" integer NOT NULL,
+    "productid" varchar(40),
+    "operator" varchar(40)
+)
+;
+CREATE TABLE "core_client" (
+    "sid" varchar(40) NOT NULL,
+    "name" varchar(40) NOT NULL,
+    "sex" integer NOT NULL,
+    "corp" varchar(40),
+    "phone1" varchar(30),
+    "phone2" varchar(30),
+    "address" varchar(100),
+    "postcode" varchar(20),
+    "email" varchar(40),
+    "website" varchar(40),
+    "im" varchar(60),
+    "memo" text,
+    "personid" varchar(40),
+    "clientid" varchar(40),
+    "pinyin" varchar(40),
+    "status" integer NOT NULL,
+    "phone3" varchar(30),
+    "owner_org" varchar(60),
+    "type" integer NOT NULL,
+    "custom_tag" varchar(60)
+)
+;
+CREATE TABLE "core_syssettings" (
+    "key" varchar(80) NOT NULL,
+    "value" text,
+    "memo" text
+)
+;
+CREATE TABLE "core_audiotemp" (
+    "serial" integer NOT NULL,
+    "client_sid" varchar(40),
+    "memo" text,
+    "type" varchar(30),
+    "productid" varchar(40),
+    "operator" varchar(40)
+)
+;
+CREATE TABLE "core_audiomapclient" (
+    "digest" varchar(40) NOT NULL,
+    "filetime" integer NOT NULL
+)
+;
+CREATE INDEX "core_audiofile_5e45ffad" ON "core_audiofile" ("digest");
+CREATE INDEX "core_audiofile_236b7037" ON "core_audiofile" ("spxfile");
+CREATE INDEX "core_audiofile_46d7a866" ON "core_audiofile" ("filetime");
+CREATE INDEX "core_audiofile_714ba065" ON "core_audiofile" ("duration");
+CREATE INDEX "core_audiofile_36528e23" ON "core_audiofile" ("status");
+CREATE INDEX "core_audiofile_54f1ab09" ON "core_audiofile" ("uptime");
+CREATE INDEX "core_audiofile_12b6c921" ON "core_audiofile" ("serial");
+CREATE INDEX "core_audiofile_4a72d192" ON "core_audiofile" ("attr");
+CREATE INDEX "core_audiofile_1350014a" ON "core_audiofile" ("phone");
+CREATE INDEX "core_audiofile_595bcb8d" ON "core_audiofile" ("client_sid");
+CREATE INDEX "core_audiofile_6b3faef" ON "core_audiofile" ("memo");
+CREATE INDEX "core_audiofile_3f541145" ON "core_audiofile" ("memo_status");
+CREATE INDEX "core_audiofile_f429bc7" ON "core_audiofile" ("type");
+CREATE INDEX "core_audiofile_59e7c730" ON "core_audiofile" ("productid");
+CREATE INDEX "core_audiofile_2547811b" ON "core_audiofile" ("operator");
+CREATE INDEX "core_client_236a1d8" ON "core_client" ("sid");
+CREATE INDEX "core_client_52094d6e" ON "core_client" ("name");
+CREATE INDEX "core_client_447cc2c" ON "core_client" ("phone1");
+CREATE INDEX "core_client_47592f5" ON "core_client" ("phone2");
+CREATE INDEX "core_client_1d339d38" ON "core_client" ("address");
+CREATE INDEX "core_client_3904588a" ON "core_client" ("email");
+CREATE INDEX "core_client_2c71f4a3" ON "core_client" ("website");
+CREATE INDEX "core_client_49f4f441" ON "core_client" ("im");
+CREATE INDEX "core_client_6b3faef" ON "core_client" ("memo");
+CREATE INDEX "core_client_7f4affb5" ON "core_client" ("personid");
+CREATE INDEX "core_client_31bb25d" ON "core_client" ("clientid");
+CREATE INDEX "core_client_336a332" ON "core_client" ("pinyin");
+CREATE INDEX "core_client_36528e23" ON "core_client" ("status");
+CREATE INDEX "core_client_46650b2" ON "core_client" ("phone3");
+CREATE INDEX "core_client_543553f4" ON "core_client" ("owner_org");
+CREATE INDEX "core_client_f429bc7" ON "core_client" ("type");
+CREATE INDEX "core_client_45433545" ON "core_client" ("custom_tag");
+CREATE INDEX "core_syssettings_45544485" ON "core_syssettings" ("key");
+CREATE INDEX "core_audiotemp_12b6c921" ON "core_audiotemp" ("serial");
+CREATE INDEX "core_audiotemp_595bcb8d" ON "core_audiotemp" ("client_sid");
+CREATE INDEX "core_audiomapclient_5e45ffad" ON "core_audiomapclient" ("digest");
+CREATE INDEX "core_audiomapclient_46d7a866" ON "core_audiomapclient" ("filetime");
+COMMIT;

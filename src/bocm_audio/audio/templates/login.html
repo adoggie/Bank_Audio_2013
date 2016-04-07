@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<head id="Head1" runat="server">
+    <title>电话语音管理平台</title>
+	<META http-equiv=Content-Type content="text/html; charset=utf-8">
+    <script type="text/javascript">
+    function tishi()
+    {
+        if (document.getElementById("username").value == "")
+        {
+            alert("请填写用户名！");
+            return false;
+        }
+        if (document.getElementById("password").value == "")
+        {
+            alert("请填写密码！");
+            return false;
+        }
+        
+    }
+    </script>
+</head>
+<body scroll="no" style=" background-color:#226CC5; font-size:14px;">
+    <form action="" method="post" id="login-form">{% csrf_token %}
+      <table width="100%" border="0" height="100%" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="center" valign="middle" background="/static/imgs/200881421151791380_01.jpg"><table id="__01" width="1065" height="650" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td rowspan="6"><img src="/static/imgs/200881421151791380_01.jpg" width="8" height="650" alt="" /></td>
+              <td colspan="5"><img src="/static/imgs/200881421151791380_02.jpg" width="1057" height="97" alt="" /></td>
+            </tr>
+            <tr>
+              <td rowspan="5"><img src="/static/imgs/200881421151791380_03.jpg" width="230" height="553" alt="" /></td>
+              <td colspan="3"><img src="/static/imgs/200881421151791380_04.jpg" width="569" height="84" alt="" /></td>
+              <td rowspan="5"><img src="/static/imgs/200881421151791380_05.jpg" width="258" height="553" alt="" /></td>
+            </tr>
+            <tr>
+              <td width="398" height="211" rowspan="3" valign="middle" background="/static/imgs/200881421151791380_06.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="46%" height="45">&nbsp;</td>
+                  <td width="54%">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td height="25" align="right" style="color:#0066CC">用户名：</td>
+                  <td align="left">
+                      <input id="username" name="username" type="text" class=""   placeholder="用户名" style="width:150px"></td>
+                </tr>
+                <tr>
+                  <td height="25" align="right" style="color:#0066CC">密　码：</td>
+                  <td align="left">
+                      <input id="password" name="password" type="password" class="" placeholder="密码" style="width:150px"></td>
+                </tr>
+              
+                <tr>
+                  <td height="25" align="right">&nbsp;</td>
+                  <td align="left" style="color: red;"> {{error}}
+                      </td>
+                </tr>
+                <tr>
+                  <td height="25" align="right">&nbsp;</td>
+                  <td align="left">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td height="25" colspan="2" align="right"><span ></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                </tr>
+              </table></td>
+              <td colspan="2"><img src="/static/imgs/200881421151791380_07.jpg" width="171" height="39" alt="" /></td>
+            </tr>
+            <tr style="padding: 0px;margin: 0px;background-color:#CBC6BD;">
+              <td style="padding: 0px;margin: 0px;"><input id="btnLogin" name="submit" type="image" value="ee" onclick="return tishi();" style="height: 84px;" src="/static/imgs/200881421151791380_08.jpg" /></td>
+              <td style="padding: 0px;margin: 0px;"><img src="/static/imgs/200881421151791380_09.jpg" width="87"  alt="" style="height: 84px;" /></td>
+            </tr>
+            <tr>
+              <td colspan="2"><img src="/static/imgs/200881421151791380_10.jpg" width="171" height="88" alt="" /></td>
+            </tr>
+            <tr>
+              <td colspan="3"><img src="/static/imgs/200881421151791380_11.jpg" width="569" height="258" alt="" /></td>
+            </tr>
+          </table></td>
+        </tr>
+      </table>
+
+    </form>
+</body>
+</html>

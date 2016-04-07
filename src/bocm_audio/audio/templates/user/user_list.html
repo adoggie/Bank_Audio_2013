@@ -1,0 +1,116 @@
+{% load audio_extras%}
+<script type="text/javascript">
+    function export_excel(){
+        if(confirm(" 您确定要导出到excel吗?")){
+            var inputs = $("#userForm").serialize();
+            var url = '/users_export/?'+inputs;
+            location.href = url;
+            window.event.returnValue = false;
+        };
+    }
+</script>
+
+<form id="pagerForm" method="get" action="#rel#">
+	<input type="hidden" name="pageNum" value={{currentPage}} />
+	<input type="hidden" name="numPerPage" value={{numPerPage}} />
+	<input type="hidden" name="orderField" value="${param.orderField}" />
+	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+</form>
+
+<div class="pageHeader">
+	<form rel="pagerForm" id="userForm" onsubmit="return divSearch(this, 'userBox');"  action="/user_search/" method="post">
+	{% csrf_token %}
+	<div class="searchBar">
+
+        <table class="searchContent">
+            <tr>
+                <td>
+                    <input type="hidden" name="tree_select_org_id" value='{{tree_select_org_id|default_if_none:""}} '>
+                    用户名：<input type="text" name="user_user" value={{user_user}}>
+                    <!--机构名称：<input type="text" name="org_name" value={{org_name}}>-->
+                </td>
+                <td>
+                    <div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div>
+                </td>
+                <!--<td>-->
+                    <!--姓名：<input type="text" name="user_name" value="{{user_name}}"/>-->
+                <!--</td>-->
+                <!--<td>-->
+                    <!--地址：<input type="text" name="user_addr" value="{{user_addr}}"/>-->
+                <!--</td>-->
+            </tr>
+        </table>
+	
+		<div class="subBar">
+			<ul>
+				<!--<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>-->
+				<!--<li><a class="button" href="demo_page6.html" target="dialog" mask="true" title="查询框"><span>高级检索</span></a></li>-->
+			</ul>
+		</div>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="/user_add/?opMethod=add&parent_org_id={{tree_select_org_id}}" target="dialog" rel="user_add" mask="true"  title="添加管理员" height="350"><span>添加管理员</span></a></li>
+			<!--<li><a title="确实要删除这些记录吗?" target="selectedTodo" rel="ids" href="/user_deletemany/" class="delete"><span>批量删除默认方式</span></a></li>-->
+			<!--<li><a title="确实要删除这些记录吗?" target="selectedTodo" rel="ids" postType="string" href="demo/common/ajaxDone.html" class="delete"><span>批量删除逗号分隔</span></a></li>-->
+			<li><a class="edit" href="/user_add/?opMethod=edit&id={sid_user}" target="dialog"  rel="user_edit" mask="true" height="350" warn="请选择一个管理员"><span>修改</span></a></li>
+			<!--<li class="line">line</li>-->
+			<li><a class="icon" href="javascript:void(0);"  onclick="export_excel()" ><span>导出EXCEL</span></a></li>
+		</ul>
+	</div>
+    <div style="width: 99%;">
+    <table class="table" width="1000px" layoutH="150">
+		<thead>
+			<tr>
+				<!--<th width="20"><input type="checkbox" group="ids" class="checkboxCtrl"></th>-->
+                <th width="20">编号</th>
+                <th width="30">操作</th>
+				<th width="50">账号</th>
+                <th width="50">所属机构</th>
+                <th width="50">姓名</th>
+				<th width="50">联系方式</th>
+				<th width="50">详细地址</th>
+				<th width="50">邮箱</th>
+
+			</tr>
+		</thead>
+		<tbody>
+            {% for user in obj_list %}
+			<tr target="sid_user" rel={{user.id}}>
+				<!--<td><input name="ids" value={{user.id}} type="checkbox"></td>-->
+                <td>{% serial_number currentPage numPerPage forloop.counter %}</td>
+                <td>
+                    <a title="删除" target="ajaxTodo" href="/user_delete/?id={{user.id}}" class="btnDel">删除</a>
+                    <a title="编辑" target="dialog" href="/user_add/?opMethod=edit&id={{user.id}}" height="350" class="btnEdit">编辑</a>
+                </td>
+				<td>{{user.user}}</td>
+                <td>{{user.org|default_if_none:""}}</td>
+				<td>{{user.name|default_if_none:""}} </td>
+                <td>{{user.phone|default_if_none:""}} </td>
+				<td>{{user.address|default_if_none:""}} </td>
+				<td>{{user.email|default_if_none:""}}</td>
+
+			</tr>
+            {% endfor %}
+			<!--<tr target="sid_user" rel="2">-->
+		</tbody>
+	</table>
+	</div>
+	<div class="panelBar">
+		<div class="pages">
+			<!--<span>显示</span>-->
+			<!--<select class="combox"  name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value},'userBox')">-->
+				<!--<option value="1">1</option>-->
+				<!--<option value="2">2</option>-->
+				<!--<option value="5">5</option>-->
+				<!--<option value="10">10</option>-->
+			<!--</select>-->
+			<span>每页{{numPerPage}}条,共{{totalCount}}条,共{{pageCount}}页</span>
+		</div>
+		<div class="pagination" rel="userBox" totalCount={{totalCount}} numPerPage={{numPerPage}} pageNumShown={{pageNumShown}} currentPage={{currentPage}}></div>
+
+	</div>
+</div>

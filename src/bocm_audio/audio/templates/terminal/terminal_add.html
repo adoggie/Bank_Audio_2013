@@ -1,0 +1,65 @@
+<div class="pageContent">
+	<form method="post" action="/terminal_add/" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+	{% csrf_token %}
+
+		<div class="pageFormContent" layoutH="56">
+	
+			<p>
+			<label>所属机构：</label>
+
+                {% ifequal opMethod "add" %}
+                <input type="hidden" name="terminal_parent.id" value="{{parent_org.id}}" />
+                <input type="text" class="" name="terminal_parent.name" value="{{parent_org.name}}" readonly="readonly" />
+                {% else %}
+                <input type="hidden" name="terminal_parent.id" value="{{terminal.org.id}}"/>
+                <input type="text" class="required" name="terminal_parent.name" value="{{terminal.org|default_if_none:''}}" readonly="readonly" />
+                {% endifequal %}
+
+			</p>
+			<p>
+				<label>话机编号：</label>
+                <input type="hidden" name="id" value="{{terminal.id}}"/>
+				<input name="user" class="required" type="text" size="30" maxlength="40" value="{{terminal.user|default_if_none:''}}" alt=""/>
+			</p>
+			<p>
+				<label>密码：</label>
+				<input name="passwd" class="required" type="password" size="30" minlength="6" maxlength="20" value="{{terminal.passwd|default_if_none:''}}" alt=""/>
+			</p>
+			<p>
+				<label>详细地址：</label>
+				<input name="address" class="" type="text" size="30" maxlength="160" value="{{terminal.address|default_if_none:''}}" alt=""/>
+			</p>
+            <p>
+                <label>联系电话：</label>
+                <input name="phone" class="" type="text" size="30"  maxlength="30" value="{{terminal.phone|default_if_none:''}}" alt=""/>
+            </p>
+            <p>
+                <label>邮编：</label>
+                <input name="postcode" class="" type="text" size="30" maxlength="20" value="{{terminal.postcode|default_if_none:''}}" alt=""/>
+            </p>
+            <p>
+                <label>员工名称：</label>
+                <input name="employee" class="" type="text" size="30" maxlength="20" value="{{terminal.employee|default_if_none:''}}" alt=""/>
+            </p>
+            <!--<p>-->
+                <!--<label>员工名称：</label>-->
+                <!--<input name="employee" class="" type="text" size="30" maxlength="20" value="{{terminal.employee|default_if_none:''}}" alt=""/>-->
+            <!--</p>-->
+
+            <p>
+                <label>附属信息：</label>
+                <textarea name="addition" cols="30" rows="3">{{terminal.addition|default_if_none:''}}</textarea>
+            </p>
+
+		</div>
+		<div class="formBar">
+			<ul>
+				<!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

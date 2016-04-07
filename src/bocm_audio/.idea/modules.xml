@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../eclipse/Ecourse/.idea/Ecourse.iml" filepath="$PROJECT_DIR$/../../eclipse/Ecourse/.idea/Ecourse.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../auto4s/.idea/auto4s.iml" filepath="$PROJECT_DIR$/../auto4s/.idea/auto4s.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/bocm_audio.iml" filepath="$PROJECT_DIR$/.idea/bocm_audio.iml" />
+      <module fileurl="file://D:/project/001_soucreCode/chedushicn/.idea/chedushicn.iml" filepath="D:/project/001_soucreCode/chedushicn/.idea/chedushicn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../dvr_DataProcess/.idea/dvr_DataProcess.iml" filepath="$PROJECT_DIR$/../dvr_DataProcess/.idea/dvr_DataProcess.iml" />
+      <module fileurl="file://D:/project_now/OurTomorrowLikeTheSun/SVN/tax/dz_webquery/.idea/dz_webquery.iml" filepath="D:/project_now/OurTomorrowLikeTheSun/SVN/tax/dz_webquery/.idea/dz_webquery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../python_module/.idea/python_module.iml" filepath="$PROJECT_DIR$/../python_module/.idea/python_module.iml" />
+    </modules>
+  </component>
+</project>
+

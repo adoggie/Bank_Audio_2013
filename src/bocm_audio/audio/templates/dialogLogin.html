@@ -1,0 +1,30 @@
+{% load url from future %}
+<div class="pageContent">
+    <form method="post" action="{% url 'dialogLogin' %}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+        {% csrf_token %}
+
+        <div class="pageFormContent" layoutH="56">
+
+            <p>
+                <label>用户名：</label>
+                <input name="username" class="required" type="text" size="30" value="{{org.address|default_if_none:''}}" alt="请输入用户名"/>
+            </p>
+            <p>
+                <label>密码：</label>
+                <input name="password" class="required " type="text" size="30" value="{{org.address|default_if_none:''}}" alt="请输入密码"/>
+            </p>
+
+        </div>
+        <div class="formBar">
+            <ul>
+                <!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
+                <li>
+                    <div class="buttonActive"><div class="buttonContent"><button type="submit">登入</button></div></div>
+                </li>
+                <li>
+                    <div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>

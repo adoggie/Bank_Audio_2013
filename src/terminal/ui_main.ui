@@ -1,0 +1,1696 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>835</width>
+    <height>472</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Leadcom 语音网络终端</string>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <property name="margin">
+     <number>4</number>
+    </property>
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="tabPosition">
+       <enum>QTabWidget::South</enum>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="tabStatus">
+       <attribute name="title">
+        <string>状 态</string>
+       </attribute>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>-32</x>
+          <y>92</y>
+          <width>125</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>连接状态:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>-32</x>
+          <y>124</y>
+          <width>125</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>软件版本:</string>
+        </property>
+        <property name="scaledContents">
+         <bool>false</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnCheckVersion">
+        <property name="geometry">
+         <rect>
+          <x>108</x>
+          <y>244</y>
+          <width>97</width>
+          <height>32</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>最新版本...</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="txtStatus">
+        <property name="geometry">
+         <rect>
+          <x>116</x>
+          <y>88</y>
+          <width>440</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="txtVersion">
+        <property name="geometry">
+         <rect>
+          <x>116</x>
+          <y>124</y>
+          <width>440</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_21">
+        <property name="geometry">
+         <rect>
+          <x>-32</x>
+          <y>160</y>
+          <width>125</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>话机USB状态:</string>
+        </property>
+        <property name="scaledContents">
+         <bool>false</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="txtPhoneStatus">
+        <property name="geometry">
+         <rect>
+          <x>116</x>
+          <y>160</y>
+          <width>440</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="text">
+         <string>离线</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_23">
+        <property name="geometry">
+         <rect>
+          <x>-32</x>
+          <y>196</y>
+          <width>125</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>磁盘空间</string>
+        </property>
+        <property name="scaledContents">
+         <bool>false</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="txtDiskResource">
+        <property name="geometry">
+         <rect>
+          <x>116</x>
+          <y>192</y>
+          <width>440</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnOpenMediaDir">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>244</y>
+          <width>97</width>
+          <height>32</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>打开录音目录</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tabClients">
+       <attribute name="title">
+        <string>客户信息</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <property name="spacing">
+         <number>4</number>
+        </property>
+        <property name="margin">
+         <number>2</number>
+        </property>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QWidget" name="widget" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>60</height>
+             </size>
+            </property>
+            <widget class="QComboBox" name="cbxClientQueryTypes">
+             <property name="geometry">
+              <rect>
+               <x>40</x>
+               <y>8</y>
+               <width>125</width>
+               <height>22</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="edtClientQueryContent">
+             <property name="geometry">
+              <rect>
+               <x>172</x>
+               <y>8</y>
+               <width>229</width>
+               <height>20</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnClientQuery">
+             <property name="geometry">
+              <rect>
+               <x>616</x>
+               <y>8</y>
+               <width>75</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>搜 索</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_12">
+             <property name="geometry">
+              <rect>
+               <x>4</x>
+               <y>12</y>
+               <width>37</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>查找</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnClientDelete">
+             <property name="geometry">
+              <rect>
+               <x>208</x>
+               <y>36</y>
+               <width>75</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>删除</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnClientNew">
+             <property name="geometry">
+              <rect>
+               <x>40</x>
+               <y>36</y>
+               <width>75</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>新客户</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnClientEdit">
+             <property name="geometry">
+              <rect>
+               <x>124</x>
+               <y>36</y>
+               <width>75</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>编辑</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnDial">
+             <property name="geometry">
+              <rect>
+               <x>324</x>
+               <y>36</y>
+               <width>75</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 0, 0);</string>
+             </property>
+             <property name="text">
+              <string>拨号</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnHangup">
+             <property name="geometry">
+              <rect>
+               <x>408</x>
+               <y>36</y>
+               <width>75</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 0, 0);</string>
+             </property>
+             <property name="text">
+              <string>挂机</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_22">
+             <property name="geometry">
+              <rect>
+               <x>420</x>
+               <y>12</y>
+               <width>57</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>客户类别</string>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="cbxClientType">
+             <property name="geometry">
+              <rect>
+               <x>476</x>
+               <y>8</y>
+               <width>125</width>
+               <height>22</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnSceneRecordStart">
+             <property name="geometry">
+              <rect>
+               <x>532</x>
+               <y>36</y>
+               <width>75</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>开始录音</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnSceneRecordStop">
+             <property name="geometry">
+              <rect>
+               <x>616</x>
+               <y>36</y>
+               <width>75</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>停止录音</string>
+             </property>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTreeWidget" name="tvClientList">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="selectionMode">
+             <enum>QAbstractItemView::ExtendedSelection</enum>
+            </property>
+            <column>
+             <property name="text">
+              <string notr="true">1</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_2" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>5</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabArchives">
+       <attribute name="title">
+        <string>通话记录</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <property name="spacing">
+         <number>3</number>
+        </property>
+        <property name="margin">
+         <number>3</number>
+        </property>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QWidget" name="widget_3" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>74</height>
+             </size>
+            </property>
+            <widget class="QGroupBox" name="groupBox_5">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>2</y>
+               <width>865</width>
+               <height>72</height>
+              </rect>
+             </property>
+             <property name="title">
+              <string/>
+             </property>
+             <widget class="QLabel" name="label_15">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>44</y>
+                <width>54</width>
+                <height>12</height>
+               </rect>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::RightToLeft</enum>
+              </property>
+              <property name="text">
+               <string>时  间</string>
+              </property>
+             </widget>
+             <widget class="QComboBox" name="cbxToneAttrs">
+              <property name="geometry">
+               <rect>
+                <x>552</x>
+                <y>7</y>
+                <width>92</width>
+                <height>22</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_16">
+              <property name="geometry">
+               <rect>
+                <x>212</x>
+                <y>44</y>
+                <width>16</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>-</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_14">
+              <property name="geometry">
+               <rect>
+                <x>472</x>
+                <y>12</y>
+                <width>77</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>来去电类型</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_13">
+              <property name="geometry">
+               <rect>
+                <x>4</x>
+                <y>12</y>
+                <width>53</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::RightToLeft</enum>
+              </property>
+              <property name="text">
+               <string>搜索条件</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btnToneQuery">
+              <property name="geometry">
+               <rect>
+                <x>716</x>
+                <y>38</y>
+                <width>93</width>
+                <height>25</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 0, 0);</string>
+              </property>
+              <property name="text">
+               <string>搜 索</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="edtToneQueryContent">
+              <property name="geometry">
+               <rect>
+                <x>224</x>
+                <y>9</y>
+                <width>217</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QComboBox" name="cbxToneQueryTypes">
+              <property name="geometry">
+               <rect>
+                <x>64</x>
+                <y>8</y>
+                <width>140</width>
+                <height>22</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+             </widget>
+             <widget class="QDateTimeEdit" name="dtToneStart">
+              <property name="geometry">
+               <rect>
+                <x>64</x>
+                <y>40</y>
+                <width>140</width>
+                <height>25</height>
+               </rect>
+              </property>
+              <property name="displayFormat">
+               <string>yyyy-M-d H:mm:ss</string>
+              </property>
+              <property name="calendarPopup">
+               <bool>true</bool>
+              </property>
+             </widget>
+             <widget class="QDateTimeEdit" name="dtToneEnd">
+              <property name="geometry">
+               <rect>
+                <x>224</x>
+                <y>40</y>
+                <width>140</width>
+                <height>25</height>
+               </rect>
+              </property>
+              <property name="displayFormat">
+               <string>yyyy-M-d H:mm:ss</string>
+              </property>
+              <property name="calendarPopup">
+               <bool>true</bool>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_17">
+              <property name="geometry">
+               <rect>
+                <x>364</x>
+                <y>44</y>
+                <width>153</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::RightToLeft</enum>
+              </property>
+              <property name="text">
+               <string>备注/产品ID/客户经理</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="edtToneQueryMemo">
+              <property name="geometry">
+               <rect>
+                <x>508</x>
+                <y>42</y>
+                <width>201</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btnRecordDial">
+              <property name="geometry">
+               <rect>
+                <x>-20</x>
+                <y>60</y>
+                <width>75</width>
+                <height>23</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>拨 号</string>
+              </property>
+             </widget>
+             <widget class="QComboBox" name="cbxToneType">
+              <property name="geometry">
+               <rect>
+                <x>716</x>
+                <y>8</y>
+                <width>92</width>
+                <height>22</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_19">
+              <property name="geometry">
+               <rect>
+                <x>656</x>
+                <y>13</y>
+                <width>54</width>
+                <height>12</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>通话类型</string>
+              </property>
+             </widget>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTreeWidget" name="tvToneList">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <column>
+             <property name="text">
+              <string notr="true">1</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_4" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>80</height>
+             </size>
+            </property>
+            <widget class="QGroupBox" name="groupBox_4">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>809</width>
+               <height>77</height>
+              </rect>
+             </property>
+             <property name="title">
+              <string/>
+             </property>
+             <widget class="QPushButton" name="btnNext">
+              <property name="geometry">
+               <rect>
+                <x>172</x>
+                <y>0</y>
+                <width>24</width>
+                <height>22</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btnPause">
+              <property name="geometry">
+               <rect>
+                <x>45</x>
+                <y>16</y>
+                <width>28</width>
+                <height>24</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="flat">
+               <bool>false</bool>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btnPlay">
+              <property name="geometry">
+               <rect>
+                <x>18</x>
+                <y>16</y>
+                <width>28</width>
+                <height>24</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="flat">
+               <bool>false</bool>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btnStop">
+              <property name="geometry">
+               <rect>
+                <x>72</x>
+                <y>16</y>
+                <width>28</width>
+                <height>24</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btnBack">
+              <property name="geometry">
+               <rect>
+                <x>149</x>
+                <y>0</y>
+                <width>24</width>
+                <height>22</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+             <widget class="QLabel" name="txtPlayIndicator">
+              <property name="geometry">
+               <rect>
+                <x>144</x>
+                <y>48</y>
+                <width>137</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>00:00:00 / 00:00:00</string>
+              </property>
+             </widget>
+             <widget class="Phonon::SeekSlider" name="seekSlider">
+              <property name="geometry">
+               <rect>
+                <x>140</x>
+                <y>20</y>
+                <width>641</width>
+                <height>21</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="Phonon::VolumeSlider" name="volumeSlider">
+              <property name="geometry">
+               <rect>
+                <x>16</x>
+                <y>48</y>
+                <width>109</width>
+                <height>22</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btnToneMemo">
+              <property name="geometry">
+               <rect>
+                <x>708</x>
+                <y>45</y>
+                <width>75</width>
+                <height>23</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>备注信息</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_18">
+              <property name="geometry">
+               <rect>
+                <x>282</x>
+                <y>53</y>
+                <width>54</width>
+                <height>12</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>通话时间:</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="txtToneTime">
+              <property name="geometry">
+               <rect>
+                <x>340</x>
+                <y>48</y>
+                <width>145</width>
+                <height>21</height>
+               </rect>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Sunken</enum>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_20">
+              <property name="geometry">
+               <rect>
+                <x>497</x>
+                <y>54</y>
+                <width>54</width>
+                <height>12</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>电话号码:</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="txtTonePhone">
+              <property name="geometry">
+               <rect>
+                <x>552</x>
+                <y>48</y>
+                <width>145</width>
+                <height>21</height>
+               </rect>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Sunken</enum>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabSettings">
+       <attribute name="title">
+        <string>系统设置</string>
+       </attribute>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="geometry">
+         <rect>
+          <x>8</x>
+          <y>20</y>
+          <width>325</width>
+          <height>109</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>注册信息</string>
+        </property>
+        <widget class="QLabel" name="label_3">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>26</y>
+           <width>54</width>
+           <height>12</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>注册名称</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="edtUser">
+         <property name="geometry">
+          <rect>
+           <x>92</x>
+           <y>20</y>
+           <width>217</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="maxLength">
+          <number>30</number>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="edtPasswd">
+         <property name="geometry">
+          <rect>
+           <x>92</x>
+           <y>48</y>
+           <width>217</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="maxLength">
+          <number>20</number>
+         </property>
+         <property name="echoMode">
+          <enum>QLineEdit::Password</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_7">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>54</y>
+           <width>54</width>
+           <height>12</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>密  码</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btnChangePasswd">
+         <property name="geometry">
+          <rect>
+           <x>92</x>
+           <y>76</y>
+           <width>75</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>修改密码</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="txtRegStatus">
+         <property name="geometry">
+          <rect>
+           <x>188</x>
+           <y>80</y>
+           <width>117</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>未注册</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_2">
+        <property name="geometry">
+         <rect>
+          <x>364</x>
+          <y>16</y>
+          <width>445</width>
+          <height>253</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>附属信息</string>
+        </property>
+        <widget class="QLabel" name="label_4">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>58</y>
+           <width>54</width>
+           <height>12</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>电话号码</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="edtPhone">
+         <property name="geometry">
+          <rect>
+           <x>92</x>
+           <y>52</y>
+           <width>341</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="maxLength">
+          <number>40</number>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="edtEmployee">
+         <property name="geometry">
+          <rect>
+           <x>92</x>
+           <y>80</y>
+           <width>341</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="maxLength">
+          <number>20</number>
+         </property>
+         <property name="echoMode">
+          <enum>QLineEdit::Normal</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_8">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>86</y>
+           <width>54</width>
+           <height>12</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>员工名称</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_9">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>114</y>
+           <width>54</width>
+           <height>12</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>地址信息</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="edtAddress">
+         <property name="geometry">
+          <rect>
+           <x>92</x>
+           <y>108</y>
+           <width>341</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="maxLength">
+          <number>120</number>
+         </property>
+         <property name="echoMode">
+          <enum>QLineEdit::Normal</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_10">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>160</y>
+           <width>54</width>
+           <height>12</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>附属信息</string>
+         </property>
+        </widget>
+        <widget class="QTextEdit" name="edtAddition">
+         <property name="geometry">
+          <rect>
+           <x>92</x>
+           <y>136</y>
+           <width>341</width>
+           <height>71</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_6">
+         <property name="geometry">
+          <rect>
+           <x>-56</x>
+           <y>24</y>
+           <width>125</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>分支机构:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="txtOrganization">
+         <property name="geometry">
+          <rect>
+           <x>92</x>
+           <y>20</y>
+           <width>341</width>
+           <height>25</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btnUpdateTermInfo">
+         <property name="geometry">
+          <rect>
+           <x>92</x>
+           <y>216</y>
+           <width>97</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>修改终端信息</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QPushButton" name="btnSave">
+        <property name="geometry">
+         <rect>
+          <x>16</x>
+          <y>360</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(0, 170, 0);
+background-color: rgb(0, 255, 127);</string>
+        </property>
+        <property name="text">
+         <string>保 存</string>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_3">
+        <property name="geometry">
+         <rect>
+          <x>8</x>
+          <y>140</y>
+          <width>325</width>
+          <height>85</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>服务器信息</string>
+        </property>
+        <widget class="QLabel" name="label_5">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>42</y>
+           <width>69</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>服务器1</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="edtServer1">
+         <property name="geometry">
+          <rect>
+           <x>92</x>
+           <y>40</y>
+           <width>221</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>localhost:8000</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="edtServer2">
+         <property name="geometry">
+          <rect>
+           <x>92</x>
+           <y>63</y>
+           <width>221</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>localhost:2300</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_11">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>64</y>
+           <width>54</width>
+           <height>12</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>服务器2</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QCheckBox" name="ckAutoStartWithOsStart">
+        <property name="geometry">
+         <rect>
+          <x>368</x>
+          <y>292</y>
+          <width>181</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>随windows启动自动运行</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="ckAutoLogin">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>256</x>
+          <y>140</y>
+          <width>71</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>自动登陆</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnLogin">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>152</x>
+          <y>136</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(0, 255, 127);
+background-color: rgb(255, 85, 0);
+color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string>连接测试</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="ckRunInBackground">
+        <property name="geometry">
+         <rect>
+          <x>368</x>
+          <y>320</y>
+          <width>181</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>后台运行</string>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_6">
+        <property name="geometry">
+         <rect>
+          <x>12</x>
+          <y>236</y>
+          <width>321</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>话机设置</string>
+        </property>
+        <widget class="QLabel" name="label_24">
+         <property name="geometry">
+          <rect>
+           <x>12</x>
+           <y>30</y>
+           <width>69</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>话机密码</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="edtPhonePasswd">
+         <property name="geometry">
+          <rect>
+           <x>84</x>
+           <y>28</y>
+           <width>221</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="inputMask">
+          <string/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="maxLength">
+          <number>32767</number>
+         </property>
+         <property name="echoMode">
+          <enum>QLineEdit::PasswordEchoOnEdit</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="txtPhonePasswdStatus">
+         <property name="geometry">
+          <rect>
+           <x>84</x>
+           <y>52</y>
+           <width>217</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 0, 0);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QComboBox" name="cbxLockTimes">
+        <property name="geometry">
+         <rect>
+          <x>732</x>
+          <y>292</y>
+          <width>77</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_25">
+        <property name="geometry">
+         <rect>
+          <x>664</x>
+          <y>296</y>
+          <width>65</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>锁屏时间</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="ckMemoAutoShow">
+        <property name="geometry">
+         <rect>
+          <x>368</x>
+          <y>344</y>
+          <width>153</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>自动显示通话备注</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tabRunLog">
+       <attribute name="title">
+        <string>运行日志</string>
+       </attribute>
+       <widget class="QTextEdit" name="edtLogMemo">
+        <property name="geometry">
+         <rect>
+          <x>12</x>
+          <y>8</y>
+          <width>661</width>
+          <height>353</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>835</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>系统</string>
+    </property>
+    <widget class="QMenu" name="menu_5">
+     <property name="title">
+      <string>高级</string>
+     </property>
+     <addaction name="actSyncReset"/>
+     <addaction name="actLockPasswdSetting"/>
+    </widget>
+    <addaction name="menu_5"/>
+    <addaction name="separator"/>
+    <addaction name="actLock"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>帮助</string>
+    </property>
+    <addaction name="actAbout"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>客户</string>
+    </property>
+    <addaction name="actClientExport"/>
+    <addaction name="actClientImport"/>
+    <addaction name="separator"/>
+    <addaction name="actClientSyncFromServer"/>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>视图</string>
+    </property>
+    <addaction name="actTabStatus"/>
+    <addaction name="actTabClient"/>
+    <addaction name="actTabArchive"/>
+    <addaction name="actTabSettings"/>
+   </widget>
+   <widget class="QMenu" name="menu_6">
+    <property name="title">
+     <string>语音</string>
+    </property>
+    <addaction name="actArchiveUnMatched"/>
+    <addaction name="actArchiveUnMatchedMutli"/>
+    <addaction name="separator"/>
+    <addaction name="actArchiveExport"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_4"/>
+   <addaction name="menu_3"/>
+   <addaction name="menu_6"/>
+   <addaction name="menu_2"/>
+  </widget>
+  <action name="miUserMgr">
+   <property name="text">
+    <string>用户管理</string>
+   </property>
+  </action>
+  <action name="miTask">
+   <property name="text">
+    <string>计划任务</string>
+   </property>
+  </action>
+  <action name="miServerStatus">
+   <property name="text">
+    <string>服务器状态</string>
+   </property>
+  </action>
+  <action name="miChangePwd">
+   <property name="text">
+    <string>更改用户密码</string>
+   </property>
+  </action>
+  <action name="miExit">
+   <property name="text">
+    <string>系统退出</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>退出</string>
+   </property>
+  </action>
+  <action name="actClientImport">
+   <property name="text">
+    <string>导入</string>
+   </property>
+  </action>
+  <action name="actClientExport">
+   <property name="text">
+    <string>导出</string>
+   </property>
+  </action>
+  <action name="action_4">
+   <property name="text">
+    <string>新客户</string>
+   </property>
+  </action>
+  <action name="action_5">
+   <property name="text">
+    <string>编辑</string>
+   </property>
+  </action>
+  <action name="action_6">
+   <property name="text">
+    <string>删除</string>
+   </property>
+  </action>
+  <action name="actTabStatus">
+   <property name="text">
+    <string>状态</string>
+   </property>
+  </action>
+  <action name="actTabClient">
+   <property name="text">
+    <string>客户信息</string>
+   </property>
+  </action>
+  <action name="actTabArchive">
+   <property name="text">
+    <string>通话记录</string>
+   </property>
+  </action>
+  <action name="action_13">
+   <property name="text">
+    <string>通话记录</string>
+   </property>
+  </action>
+  <action name="actTabSettings">
+   <property name="text">
+    <string>系统设置</string>
+   </property>
+  </action>
+  <action name="actAbout">
+   <property name="text">
+    <string>关于</string>
+   </property>
+  </action>
+  <action name="actClientSyncFromServer">
+   <property name="text">
+    <string>同步客户资料到本地</string>
+   </property>
+  </action>
+  <action name="actSyncReset">
+   <property name="text">
+    <string>话机同步复位</string>
+   </property>
+  </action>
+  <action name="actArchiveUnMatched">
+   <property name="text">
+    <string>未匹配客户的语音记录</string>
+   </property>
+  </action>
+  <action name="actArchiveUnMatchedMutli">
+   <property name="text">
+    <string>匹配到多客户的语音记录</string>
+   </property>
+  </action>
+  <action name="actArchiveExport">
+   <property name="text">
+    <string>导出通话记录</string>
+   </property>
+  </action>
+  <action name="actLockPasswdSetting">
+   <property name="text">
+    <string>锁屏设置</string>
+   </property>
+  </action>
+  <action name="actLock">
+   <property name="text">
+    <string>锁屏</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Phonon::SeekSlider</class>
+   <extends>QWidget</extends>
+   <header location="global">phonon/seekslider.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Phonon::VolumeSlider</class>
+   <extends>QWidget</extends>
+   <header location="global">phonon/volumeslider.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+ <designerdata>
+  <property name="gridDeltaX">
+   <number>4</number>
+  </property>
+  <property name="gridDeltaY">
+   <number>4</number>
+  </property>
+  <property name="gridSnapX">
+   <bool>true</bool>
+  </property>
+  <property name="gridSnapY">
+   <bool>true</bool>
+  </property>
+  <property name="gridVisible">
+   <bool>true</bool>
+  </property>
+ </designerdata>
+</ui>

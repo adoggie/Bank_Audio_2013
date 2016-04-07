@@ -1,0 +1,62 @@
+{% load static %}
+{% load audio_extras %}
+{% get_static_prefix as STATIC_PREFIX %}
+
+<!--<link rel="stylesheet" href="{{STATIC_PREFIX}}js/audiojs/includes/index.css" media="screen">-->
+<style type="text/css">
+    padding_p{
+        padding-left:100px;
+    }
+    .label_width{width: 200px;}
+    .center{text-align: center;}
+</style>
+<div class="pageContent">
+        <div class="pageFormContent" layoutH="56">
+
+            <p  align="center">
+                <!--src="{% get_media_prefix %}/{{media_url}}"-->
+                <!--<audio src="{% get_media_prefix %}{{media_url}}" preload="auto"></audio>-->
+                <!--<audio src="http://s3.amazonaws.com/audiojs/03-its-all-about-the-crystalizabeths.mp3" preload="auto"></audio>-->
+                <!--<audio src="{{archive.url}}" preload="auto"></audio>-->
+                <object type="application/x-shockwave-flash" data="{{STATIC_PREFIX}}js/dewplayer/dewplayer-vol.swf?mp3={% get_media_prefix %}{{media_url}}" width="260" height="20" id="{{archive.id}}">
+                    <param name="wmode" value="transparent" />
+                    <param name="movie" value="{{STATIC_PREFIX}}js/dewplayer/dewplayer-vol.swf?mp3={% get_media_prefix %}{{media_url}}" />
+                </object>
+            </p>
+            <p class="padding_p">
+                <label class="center">所属终端：</label><label class="center" style="width: 200px">{{archive.term}}</label>
+            </p>
+            <p class="padding_p">
+                <label class="center">客户名称：</label><label class="center" style="width: 200px">{{archive.client|default_if_none:""}}</label>
+            </p>
+            <p class="padding_p">
+                <label class="center">电话号码：</label><label class="center" style="width: 200px">{{archive.phone|default_if_none:""}}</label>
+            </p>
+            <!--<p class="padding_p">-->
+                <!--<label class="center">文件名称:</label><label class="center" style="width: 200px">{{archive.name}}</label>-->
+            <!--</p>-->
+            <p class="padding_p">
+                <label class="center">录音时间：</label><label class="center" style="width: 200px">{{archive.rectime|date:"Y-m-d H:i:s"}}</label>
+            </p>
+            <p class="padding_p">
+                <label class="center">时长：</label><label class="center" style="width: 200px">{{archive.duration|duration_format}}</label>
+            </p>
+            <!--<p class="padding_p">-->
+                <!--<label class="center">上传时间：</label><label class="center" style="width: 200px">{{archive.uptime|date:"Y-m-d H:i:s"}}</label>-->
+            <!--</p>-->
+            <p class="padding_p">
+                <label class="center">去电属性：</label><label class="center"  style="width: 200px">{{archive.get_attr_display}}</label>
+            </p>
+            <p class="padding_p">
+                <label class="center">通话类型：</label><label class="center" style="width: 200px">{{archive.get_type_display}}</label>
+            </p>
+            <p class="padding_p">
+                <label class="center">产品id：</label><label class="center" style="width: 200px">{{archive.productid|default_if_none:""}}</label>
+            </p>
+            <p class="padding_p">
+                <label class="center">备注：</label><label class="center" style="width: 200px">{{archive.memo|default_if_none:""}}</label>
+            </p>
+
+        </div>
+
+</div>

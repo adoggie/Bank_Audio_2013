@@ -1,0 +1,104 @@
+centos下用OPENSSL自建CA
+发表于20 天前
+centosAPACHEopensslca
+wget http://www.openssl.org/source/openssl-1.0.0a.tar.gz
+apache：  wget http://www.apache.org/dist/httpd/httpd-2.2.24.tar.gz    
+
+tar zxvf openssl-1.0.0a.tar.gz
+cd openssl-1.0.0a
+./config --prefix=/usr/local/openssl
+make && make install
+
+mkdir -p /etc/ssl    
+cp /usr/local/openssl/ssl/misc/CA.sh /etc/ssl 
+cp /usr/local/openssl/ssl/openssl.cnf /etc/ssl    
+cd /etc/ssl
+
+export OPENSSL_CONF=/etc/ssl/openssl.cnf
+
+生成CA根证书：
+openssl genrsa -out ca.key 2048
+openssl req -new -x509 -days 3650 -key ca.key -out ca.crt
+
+第二个命令会提示输入一系列数据，包含国家、省份、地区（市）、组织名、组织单位（可以留空，输入.代表留空）、通用名称（这个按自己喜欢写）
+or
+./CA.sh -newca    
+cp demoCA/cacert.pem cacert.pem    
+cp cacert.pem ca.crt
+
+生成服务器私钥：
+openssl genrsa -out www.ptphp.com.key 2048 
+
+生成证书请求：
+openssl req -new -key www.ptphp.com.key -out www.ptphp.com.csr
+
+第二个命令会询问和刚才一样的问题，注意国家、省份、地区、组织名都要保持一致；组织单位建议输入网站域名，通用名一定要输入网站域名
+签发服务器证书
+openssl ca -in www.ptphp.com.csr -out www.ptphp.com.crt -cert ./ca.crt -keyfile ./ca.key
+
+or
+cp www.ptphp.com.csr newreq.pem
+
+./CA.sh -sign    
+cp newcert.pem  www.ptphp.com.crt
+
+两个提示全部回答 y，证书签名完毕。
+nginx 篇：编辑 vhost 配置文件找到 vhost 配置文件，复制一份，将 server 段开头的 listen 80; 替换为以下内容：
+listen       443;
+ssl on;
+ssl_certificate /etc/ssl/www.ptphp.com.crt;
+ssl_certificate_key /etc/ssl/www.ptphp.com.key;
+
+apache配置
+vi /usr/local/apache/conf/extra/ssl.conf
+
+ssl开启
+SSLEngine on
+
+指定服务器证书位置
+SSLCertificateFile /etc/ssl/www.ptphp.com.crt
+
+指定服务器证书key位置
+SSLCertificateKeyFile /etc/ssl/www.ptphp.com.key
+
+证书目录
+SSLCACertificatePath /etc/ssl
+
+根证书位置
+SSLCACertificateFile /etc/ssl/cacert.pem
+
+要求客户拥有证书
+SSLVerifyClient require
+SSLVerifyDepth  1
+SSLOptions +StdEnvVars
+
+记录log
+CustomLog "/var/log/ssl_request_log" \
+          "%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \"%r\" %b"
+
+
+SSLEngine on
+SSLCertificateFile /etc/ssl/www.ptphp.com.crt
+SSLCertificateKeyFile /etc/ssl/www.ptphp.com.key
+SSLCACertificatePath /etc/ssl
+SSLCACertificateFile /etc/ssl/cacert.pem
+
+SSLVerifyClient require
+SSLVerifyDepth  1
+SSLOptions +StdEnvVars
+
+CustomLog "/usr/local/apache/logs/ssl_request_log" \
+          "%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \"%r\" %b"
+
+vi /usr/local/apache/conf/extra/httpd_vhosts.conf
+
+listen 443 https
+NameVirtualHost *:443
+<VirtualHost _default_:443>    
+    DocumentRoot "/var/www/html"
+    ServerName  *:443        
+    Include conf/extra/ssl.conf    
+</VirtualHost>
+
+vi /usr/local/apache/conf/httpd.conf把Include conf/extra/httpd-vhosts.conf前面的注释去掉
+启动 /usr/local/apache/bin/apachectl -D SSL -k start

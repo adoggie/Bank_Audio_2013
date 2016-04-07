@@ -1,0 +1,184 @@
+{% load audio_extras %}
+<script type="text/javascript">
+    function export_excel(){
+        if(confirm(" 您确定要导出到excel吗?")){
+            var inputs = $("#clientForm").serialize();
+            var url = '/clients_export/?'+inputs;
+            location.href = url;
+            window.event.returnValue = false;
+        };
+    }
+</script>
+
+<form id="pagerForm" method="get" action="#rel#">
+	<input type="hidden" name="pageNum" value={{currentPage}} />
+	<input type="hidden" name="numPerPage" value={{numPerPage}} />
+	<input type="hidden" name="orderField" value="${param.orderField}" />
+	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+</form>
+
+<div class="pageHeader">
+	<form rel="pagerForm" id="clientForm" onsubmit="return divSearch(this, 'clientBox');"  action="/client_search/" method="post">
+	{% csrf_token %}
+	<div class="searchBar">
+		<!--<ul class="searchContent">-->
+			<!--<li>-->
+				<!--<label>机构名称：</label>-->
+				<!--<input type="text" name="client_name" value="{{client_name}}"/>-->
+			<!--</li>-->
+
+
+			<!--<li>-->
+                <!--<label>地址：</label>-->
+                <!--<input type="text" name="client_addr" value="{{client_addr}}"/>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<select class="combox" name="province">-->
+				<!--<option value="">所有省市</option>-->
+				<!--<option value="北京">北京</option>-->
+				<!--<option value="上海">上海</option>-->
+				<!--<option value="天津">天津</option>-->
+				<!--<option value="重庆">重庆</option>-->
+				<!--<option value="广东">广东</option>-->
+			<!--</select>-->
+			<!--</li>-->
+		<!--</ul>-->
+        <table class="searchContent">
+            <tr>
+                <td>
+                    <input type="hidden" name="type" value='{{type|default_if_none:""}}'>
+					<input type="hidden" name="obj_id" value='{{obj_id|default_if_none:""}}'>
+                    客户名称：<input type="text" name="client_name" value="{{client_name}}"/>
+                </td>
+                <td>
+                    客户ID：<input type="text" name="client_clientid" value="{{client_clientid}}"/>
+                </td>
+                <td>
+                    电话号码：<input type="text" name="client_phone" value="{{client_phone}}"/>
+                </td>
+                <td>
+                    <div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div>
+                </td>
+                <!--<td>-->
+                    <!--拼音码：<input type="text" name="client_pinyin" value="{{client_pinyin}}"/>-->
+                <!--</td>-->
+
+                <!--<td>-->
+                    <!--客户编号：<input type="text" name="client_sid" value="{{client_sid}}"/>-->
+                <!--</td>-->
+                <!--<td>-->
+                    <!--客户公司：<input type="text" name="client_corp" value="{{client_corp}}"/>-->
+                <!--</td>-->
+            </tr>
+        </table>
+	
+		<div class="subBar">
+			<ul>
+				<!--<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>-->
+				<!--<li><a class="button" href="demo_page6.html" target="dialog" mask="true" title="查询框"><span>高级检索</span></a></li>-->
+			</ul>
+		</div>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<!--<li><a class="add" href="/client_add/" height="570"target="dialog" rel="client_add" mask="true"  title="添加客户信息"><span>添加客户信息</span></a></li>-->
+			<!--<li><a title="确实要删除这些记录吗?" target="selectedTodo" rel="ids" href="/client_deletemany/" class="delete"><span>批量删除默认方式</span></a></li>-->
+			<!--<li><a title="确实要删除这些记录吗?" target="selectedTodo" rel="ids" postType="string" href="demo/common/ajaxDone.html" class="delete"><span>批量删除逗号分隔</span></a></li>-->
+			<!--<li><a class="edit" href="/client_add/?id={sid_user}"  height="570" target="dialog"  rel="client_edit" mask="true" warn="请选择一个客户信息"><span>修改</span></a></li>-->
+			<!--<li class="line">line</li>-->
+			<li><a class="icon" href="javascript:void(0);"  onclick="export_excel()" ><span>导出EXCEL</span></a></li>
+		</ul>
+	</div>
+    <div style="width: 99%;">
+        <table class="table" width="1100px" layoutH="150">
+		<thead>
+			<tr>
+				<!--<th width="20"><input type="checkbox" group="ids" class="checkboxCtrl"></th>-->
+                <!--<th width="30">操作</th>-->
+                <!--<th width="50">客户编号</th>-->
+                <th width="20">编号</th>
+                <th width="50">客户ID号</th>
+
+				<th width="50">客户名称</th>
+				<th width="50">性别</th>
+                <th width="50">公司</th>
+                <th width="50">电话1</th>
+                <th width="50">电话2</th>
+                <th width="50">电话3</th>
+                <th width="50">客户类型</th>
+                <th width="50">所属机构</th>
+                <th width="50">所属话机</th>
+                <th width="50">所属客户经理</th>
+
+                <th width="50">地址</th>
+                <th width="50">邮编</th>
+				<th width="50">邮箱</th>
+                <!--<th width="50">网站</th>-->
+                <!--<th width="50">IM</th>-->
+                <th width="50">备注说明</th>
+                <th width="50">身份证号</th>
+
+                <th width="50">客户归属</th>
+
+
+			</tr>
+		</thead>
+		<tbody>
+            {% for client in obj_list %}
+			<tr target="sid_user" rel={{client.id}}>
+				<!--<td><input name="ids" value={{client.id}} type="checkbox"></td>-->
+                <!--<td>-->
+                    <!--<a title="查看" target="ajaxTodo" href="/client_view/" class="btnSearch">查看</a>-->
+                    <!--&lt;!&ndash;<a title="编辑" target="dialog" href="/client_add/?id={{client.id}}"   height="570" class="btnEdit">编辑</a>&ndash;&gt;-->
+                <!--</td>-->
+				<!--<td><b>{{client.sid|default_if_none:""}}</b></td>-->
+                <td>{% serial_number currentPage numPerPage forloop.counter %}</td>
+                <td>{{client.clientid|default_if_none:""}} </td>
+				<td>{{client.name|default_if_none:""}} </td>
+                <td>
+                    {{client.get_sex_display}}
+                </td>
+                <td>{{client.corp|default_if_none:""}} </td>
+                <td>{{client.phone1|default_if_none:""}} </td>
+                <td>{{client.phone2|default_if_none:""}} </td>
+                <td>{{client.phone3|default_if_none:""}} </td>
+                <td> {{client.get_type_display}} </td>
+                <td> {{client.term.org}} </td>
+                <td>{{client.term|default_if_none:""}}</td>
+                <td>{{client.term.employee|default_if_none:""}}</td>
+
+                <td>{{client.address|default_if_none:""}} </td>
+                <td>{{client.postcode|default_if_none:""}} </td>
+                <td>{{client.email|default_if_none:""}} </td>
+                <!--<td>{{client.website|default_if_none:""}} </td>-->
+                <!--<td>{{client.im|default_if_none:""}} </td>-->
+                <td>{{client.memo|default_if_none:""}} </td>
+                <td>{{client.personid|default_if_none:""}} </td>
+                <td>{{client.owner_org|default_if_none:""}} </td>
+
+
+
+			</tr>
+            {% endfor %}
+
+		</tbody>
+	</table>
+	</div>
+	<div class="panelBar">
+		<div class="pages">
+			<!--<span>显示</span>-->
+			<!--<select class="combox"  name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value},'clientBox')">-->
+				<!--<option value="1">1</option>-->
+				<!--<option value="2">2</option>-->
+				<!--<option value="5">5</option>-->
+				<!--<option value="10">10</option>-->
+			<!--</select>-->
+			<span>每页{{numPerPage}}条,共{{totalCount}}条,共{{pageCount}}页</span>
+		</div>
+		<div class="pagination" rel="clientBox" totalCount={{totalCount}} numPerPage={{numPerPage}} pageNumShown={{pageNumShown}} currentPage={{currentPage}}></div>
+
+	</div>
+</div>

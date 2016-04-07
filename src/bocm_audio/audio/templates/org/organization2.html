@@ -1,0 +1,121 @@
+{% load static %}
+{% get_static_prefix as STATIC_PREFIX %}
+<div class="pageContent" style="padding:5px">
+	<div layoutH="20" style="float:left; display:block; overflow:auto; width:200px; border:solid 1px #CCC; line-height:21px; background:#fff">
+	    <ul class="tree treeFolder">
+			<li><a href="/org_list/" target="ajax" rel="jbsxBox">交行总行</a>
+				<ul>
+					<li><a href="/org_list/" target="ajax" rel="jbsxBox">北京分行</a></li>
+					<li><a href="/org_list/" target="ajax" rel="jbsxBox">上海分行</a></li>
+					<li><a href="/org_list/" target="ajax" rel="jbsxBox">福建分行</a>
+						<ul>
+							<li><a href="/org_list/" target="ajax" rel="jbsxBox">龙岩支行</a>
+								<ul>
+									<li><a href="/org_list/" target="ajax" rel="jbsxBox">长汀支行</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+				</ul>
+			</li>
+
+	     </ul>
+        <div class="zTreeDemoBackground left">
+            <ul id="treeDemo" class="zTreeDemoBackground ztree"></ul>
+        </div>
+	</div>
+	
+	<div id="jbsxBox" class="unitBox" style="margin-left:206px;">
+		<!--#include virtual="org_list.html" -->
+	</div>
+	
+</div>
+<SCRIPT type="text/javascript">
+    <!--
+    var setting = {
+        data: {
+            simpleData: {
+                enable: true
+            }
+        }
+    };
+    var zNodes3 =[];
+    var treenode;
+    {% for treenode in treenode_list %}
+        var id = {{ treenode.id }};
+        var parent_id = {{treenode.parent_id}} ;
+        var name = {{treenode.name}};
+        var iconurl = "{{STATIC_PREFIX}}js/ztree_v3.5.12/css/zTreeStyle/img/diy/org.png";
+        var url = "/org_list/";
+        var target ="ajax";
+        var rel ="orgBox";
+        treenode={
+            "id":id,
+            "pId":parent_id,
+            "name":name,
+            "icon":iconurl,
+            "url":url,
+            "target":target,
+            "rel":rel
+        }
+        zNodes3.push(treenode)
+    {% endfor %}
+    var zNodes2 =[
+        { id:1, pId:0, name:"展开、折叠 自定义", open:true, iconOpen:"{{STATIC_PREFIX}}js/ztree_v3.5.12/css/zTreeStyle/img/diy/1_open.png", iconClose:"{{STATIC_PREFIX}}js/ztree_v3.5.12/css/zTreeStyle/img/diy/1_close.png",url:"/org_list/", target:"ajax"},
+        { id:11, pId:1, name:"叶子节点1", icon:"{{STATIC_PREFIX}}js/ztree_v3.5.12/css/zTreeStyle/img/diy/org.png",url:"/org_list/", target:"ajax"},
+        { id:12, pId:1, name:"叶子节点2", icon:"{{STATIC_PREFIX}}js/ztree_v3.5.12/css/zTreeStyle/img/diy/position.png",url:"/org_list/", target:"ajax"},
+        { id:13, pId:1, name:"叶子节点3", icon:"{{STATIC_PREFIX}}js/ztree_v3.5.12/css/zTreeStyle/img/diy/role.png",url:"/org_list/", target:"ajax"},
+        { id:2, pId:0, name:"展开、折叠 自定义", open:true, icon:"{{STATIC_PREFIX}}js/ztree_v3.5.12/css/zTreeStyle/img/diy/user.png",url:"/org_list/", target:"ajax"},
+        { id:21, pId:2, name:"叶子节点1", icon:"{{STATIC_PREFIX}}js/ztree_v3.5.12/css/zTreeStyle/img/diy/11.png",url:"/org_list/", target:"ajax"},
+        { id:22, pId:2, name:"叶子节点2", icon:"{{STATIC_PREFIX}}js/ztree_v3.5.12/css/zTreeStyle/img/diy/7.png",url:"/org_list/", target:"ajax"},
+        { id:23, pId:2, name:"叶子节点3", icon:"{{STATIC_PREFIX}}js/ztree_v3.5.12/css/zTreeStyle/img/diy/8.png",url:"/org_list/", target:"ajax"},
+        { id:3, pId:0, name:"不使用自定义图标", open:true,url:"/org_list/", target:"ajax", "rel":"jbsxBox" },
+        { id:31, pId:3, name:"叶子节点1",url:"/org_list/", target:"ajax",rel:"jbsxBox"},
+        { id:32, pId:3, name:"叶子节点2",url:"/org_list/", target:"ajax",rel:"jbsxBox"},
+        { id:33, pId:3, name:"叶子节点3",url:"http://www.baidu.com", target:"ajax", "rel":"jbsxBox"}
+
+    ];
+
+    $(document).ready(function(){
+        $.fn.zTree.init($("#treeDemo"), setting, zNodes3);
+        if(zNodes3.length>0){
+            $.fn.zTree.init($("#treeDemo"), setting, zNodes3);
+        }
+        $.fn.zTree.init($("#treeDemo"), setting, zNodes2);
+        $.getJSON('/get_org_tree_json/', function(jsondata) {
+
+            var zNodes = [];
+//            alert(jsondata.orgs_tree);
+            var orgs_tree = jsondata.orgs_tree;
+
+            if(orgs_tree.length>0){
+                for(var i=0;i<orgs_tree.length;i++){
+//                    alert(orgs_tree[i].fields.parent);
+                    var pid;
+                    if(orgs_tree[i].fields.parent){
+                        pid =orgs_tree[i].fields.parent;
+                    }else{
+                        pid =0;
+                    }
+                    var node ={
+                        id:orgs_tree[i].pk,
+                        pId:pid,
+                        name:orgs_tree[i].fields.name,
+                        icon:"{{STATIC_PREFIX}}js/ztree_v3.5.12/css/zTreeStyle/img/diy/org.png",
+                        url:"/org_list/",
+                        target:"ajax",
+                        rel:"jbsxBox"
+                    };
+                    zNodes.push(node);
+                }
+            }
+
+        });
+
+    });
+    //-->
+</SCRIPT>
+
+	
+

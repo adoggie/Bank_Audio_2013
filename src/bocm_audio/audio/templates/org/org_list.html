@@ -1,0 +1,155 @@
+{% load audio_extras %}
+<script type="text/javascript">
+    function remove_org_node(json){
+        DWZ.ajaxDone(json);
+        if (json.statusCode == DWZ.statusCode.ok){
+            if (json.navTabId){ //把指定navTab页面标记为需要“重新载入”。注意navTabId不能是当前navTab页面的
+                navTab.reloadFlag(json.navTabId);
+            } else { //重新载入当前navTab页面
+                var $pagerForm = $("#pagerForm", navTab.getCurrentPanel());
+                var args = $pagerForm.size()>0 ? $pagerForm.serializeArray() : {}
+                navTabPageBreak(args, json.rel);
+            }
+
+            if ("closeCurrent" == json.callbackType) {
+                setTimeout(function(){navTab.closeCurrentTab(json.navTabId);}, 100);
+            } else if ("forward" == json.callbackType) {
+                navTab.reload(json.forwardUrl);
+            } else if ("forwardConfirm" == json.callbackType) {
+                alertMsg.confirm(json.confirmMsg || DWZ.msg("forwardConfirmMsg"), {
+                    okCall: function(){
+                        navTab.reload(json.forwardUrl);
+                    }
+                });
+            } else {
+                navTab.getCurrentPanel().find(":input[initValue]").each(function(){
+                    var initVal = $(this).attr("initValue");
+                    $(this).val(initVal);
+                });
+            }
+            if(json.org_id){
+                var zTree = $.fn.zTree.getZTreeObj("org_tree"),
+                        selectNode = zTree.getNodeByParam("id",json.org_id, null);
+                var callbackFlag = $("#callbackTrigger").attr("checked");
+                zTree.removeNode(selectNode, callbackFlag);
+            }
+
+        }
+    }
+    function export_excel(){
+        if(confirm(" 您确定要导出到excel吗?")){
+            var inputs = $("#orgForm").serialize();
+            var url = '/orgs_export/?'+inputs;
+            location.href = url;
+            window.event.returnValue = false;
+        };
+    }
+</script>
+
+<form id="pagerForm" method="post" action="#rel#">
+    <input type="hidden" name="pageNum" value={{currentPage}} />
+    <input type="hidden" name="numPerPage" value={{numPerPage}} />
+    <input type="hidden" name="orderField" value="${param.orderField}" />
+    <input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+</form>
+
+<div class="pageHeader">
+    <form rel="pagerForm" id="orgForm" onsubmit="return divSearch(this, 'orgBox');"  action="/org_search/" method="post">
+        {% csrf_token %}
+        <div class="searchBar">
+            <table class="searchContent">
+                <tr>
+                    <td>
+                        <input type="hidden" name="tree_select_org_id" value='{{tree_select_org_id|default_if_none:""}} '>
+                        机构名称：<input type="text" name="org_name" value={{org_name}}>
+                    </td>
+                    <td>
+                        机构编号：<input type="text" name="org_sid" value='{{org_sid|default_if_none:""}}'/>
+                    </td>
+                    <td>
+                        联系方式：<input type="text" name="org_phone" value='{{org_phone|default_if_none:""}}'/>
+                    </td>
+                    <td>
+                        地址：<input type="text" name="org_addr" value='{{org_addr|default_if_none:""}}'/>
+                    </td>
+
+                    <td>
+                        <div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="subBar">
+                <ul>
+                    <!--<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>-->
+                    <!--<li><a class="button" href="demo_page6.html" target="dialog" mask="true" title="查询框"><span>高级检索</span></a></li>-->
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="pageContent">
+    <div class="panelBar">
+        <ul class="toolBar">
+            <li><a class="add" href="/org_add/?opMethod=add&parent_org_id={{tree_select_org_id}}" target="dialog" rel="org_add" mask="true"  title="添加子机构"><span>添加机构</span></a></li>
+            <!--<li><a title="确实要删除这些记录吗?" target="selectedTodo" rel="ids" href="/org_deletemany/" class="delete"><span>批量删除默认方式</span></a></li>-->
+            <!--<li><a title="确实要删除这些记录吗?" target="selectedTodo" rel="ids" postType="string" href="demo/common/ajaxDone.html" class="delete"><span>批量删除逗号分隔</span></a></li>-->
+            <li><a class="edit" href="/org_add/?opMethod=edit&id={sid_user}" target="dialog"  rel="org_edit" mask="true" warn="请选择一个机构"><span>修改</span></a></li>
+            <!--<li class="line">line</li>-->
+            <li><a class="icon" href="javascript:void(0);"  onclick="export_excel()" ><span>导出EXCEL</span></a></li>
+        </ul>
+    </div>
+    <div style="width: 99%;">
+    <table class="table" width="1000px" layoutH="150">
+        <thead>
+        <tr>
+            <!--<th width="20"><input type="checkbox" group="ids" class="checkboxCtrl"></th>-->
+            <th width="20">编号</th>
+            <th width="20">操作</th>
+            <th width="50">机构名称</th>
+            <th width="50">机构编号</th>
+            <th width="50">直属机构</th>
+            <th width="50">联系方式</th>
+            <th width="50">详细地址</th>
+            <th width="100">说明</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for org in obj_list %}
+        <tr target="sid_user" rel={{org.id}}>
+            <!--<td><input name="ids" value={{org.id}} type="checkbox"></td>-->
+            <td>{% serial_number currentPage numPerPage forloop.counter %}</td>
+            <td>
+                <a title="删除" target="ajaxTodo" callback="remove_org_node" href="/org_delete/?id={{org.id}}" class="btnDel">删除</a>
+                <a title="编辑" target="dialog" href="/org_add/?opMethod=edit&id={{org.id}}" class="btnEdit">编辑</a>
+            </td>
+            <td>{{org.name}}</td>
+            <td>{{org.org_sid|default_if_none:""}}</td>
+            <td>{{org.parent|default_if_none:""}}</td>
+            <td>{{org.phone|default_if_none:""}} </td>
+            <td>{{org.address|default_if_none:""}} </td>
+            <td>{{org.memo|default_if_none:""}}</td>
+
+
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    </div>
+    <div class="panelBar">
+        <div class="pages">
+            <!--<span>显示</span>-->
+            <!--<select class="combox"  name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value},'orgBox')">-->
+            <!--<option value="1">1</option>-->
+            <!--<option value="2">2</option>-->
+            <!--<option value="5">5</option>-->
+            <!--<option value="10">10</option>-->
+            <!--</select>-->
+            <span>每页{{numPerPage}}条,共{{totalCount}}条,共{{pageCount}}页</span>
+        </div>
+        <div class="pagination" rel="orgBox" totalCount={{totalCount}} numPerPage={{numPerPage}} pageNumShown={{pageNumShown}} currentPage={{currentPage}}></div>
+
+    </div>
+</div>

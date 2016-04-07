@@ -1,0 +1,148 @@
+{% load audio_extras%}
+<script type="text/javascript">
+    function export_excel(){
+        if(confirm(" 您确定要导出到excel吗?")){
+            var inputs = $("#mana_statisForm").serialize();
+            var url = '/mana_statis_export/?'+inputs;
+            location.href = url;
+            window.event.returnValue = false;
+        };
+    }
+</script>
+
+<form id="pagerForm" method="get" action="#rel#">
+	<input type="hidden" name="pageNum" value={{currentPage}} />
+	<input type="hidden" name="numPerPage" value={{numPerPage}} />
+	<input type="hidden" name="orderField" value="${param.orderField}" />
+	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+</form>
+
+<div class="pageHeader">
+	<form rel="pagerForm" id="mana_statisForm" onsubmit="return divSearch(this, 'mana_statis_Box');"  action="/mana_statis_search/" method="post">
+	{% csrf_token %}
+	<div class="searchBar">
+
+        <table class="searchContent">
+            <tr>
+                <td colspan="2">
+                    <input type="hidden" name="tree_select_org_id" value='{{tree_select_org_id|default_if_none:""}} '>
+                    <label class="searchLable">时间范围：</label>
+                    <input type="text" name="begin_time"  value="{{begin_time}}"  class="date" dateFmt="yyyy-MM-dd HH:mm:ss" readonly="true"/>
+                    <!--<a class="inputDateButton" href="javascript:;">选择</a>-->
+                    ~
+                    <input type="text" name="end_time"  value="{{end_time}}"  class="date" dateFmt="yyyy-MM-dd HH:mm:ss" readonly="true"/>
+                    <!--<input type="text" name="end_time" value="{{end_time}}"/>-->
+                </td>
+                <td>
+                    <div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div>
+                </td>
+
+            </tr>
+        </table>
+	
+		<div class="subBar">
+			<ul>
+				<!--<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>-->
+				<!--<li><a class="button" href="demo_page6.html" target="dialog" mask="true" title="查询框"><span>高级检索</span></a></li>-->
+			</ul>
+		</div>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="icon" href="javascript:void(0);"  onclick="export_excel()" ><span>导出EXCEL</span></a></li>
+		</ul>
+	</div>
+    <div style="width: 99%;">
+        <table class="table" width="100%" layoutH="150">
+		<thead>
+			<tr>
+                <!--<th width="20">编号</th>-->
+                <th width="50">客户经理名称</th>
+				<th width="50">所属话机</th>
+                <th width="50">所属机构</th>
+                <th width="50">与客户通话次数</th>
+                <th width="50">呼入次数</th>
+				<th width="50">呼出次数</th>
+				<th width="50">面谈次数</th>
+                <th width="50">未接</th>
+				<th width="50">低于2分钟的通话次数</th>
+                <th width="50">通话类型(日常沟通)</th>
+                <th width="50">通话类型(销售)</th>
+                <th width="50">通话类型(其他)</th>
+                <th width="50">总通话时长</th>
+			</tr>
+		</thead>
+		<tbody>
+            {% for mana_statistic in obj_list %}
+			<tr>
+                <!--<td>{% serial_number currentPage numPerPage forloop.counter %}</td>-->
+				<td>{{mana_statistic.employee}}</td>
+                <td>{{mana_statistic.term|default_if_none:""}}</td>
+                <td>{{mana_statistic.org_name|default_if_none:""}} </td>
+				<td>{{mana_statistic.times_sum|default_if_none:""}} </td>
+                <td>{{mana_statistic.times_in|default_if_none:""}} </td>
+				<td>{{mana_statistic.times_out|default_if_none:""}} </td>
+				<td>{{mana_statistic.times_record|default_if_none:""}}</td>
+                <td>{{mana_statistic.times_miss|default_if_none:""}} </td>
+                <td>{{mana_statistic.times_lt2min|default_if_none:""}}</td>
+                <td>{{mana_statistic.times_nor|default_if_none:""}} </td>
+                <td>{{mana_statistic.times_sell|default_if_none:""}}</td>
+                <td>{{mana_statistic.times_other|default_if_none:""}} </td>
+                <td>{{mana_statistic.time_sum|duration_format}}</td>
+
+			</tr>
+            {% endfor %}
+            <tr style="background-color:#808080;font-weight:bold;">
+                <!--<td></td>-->
+                <td style="">平均值</td>
+                <td></td>
+                <td></td>
+                <td>{{avg_.times_sum|floatformat:1}} </td>
+                <td>{{avg_.times_in|floatformat:1}} </td>
+                <td>{{avg_.times_out|floatformat:1}} </td>
+                <td>{{avg_.times_record|floatformat:1}}</td>
+                <td>{{avg_.times_miss|floatformat:1}} </td>
+                <td>{{avg_.times_lt2min|floatformat:1}}</td>
+                <td>{{avg_.times_nor|floatformat:1}} </td>
+                <td>{{avg_.times_sell|floatformat:1}}</td>
+                <td>{{avg_.times_other|floatformat:1}} </td>
+                <td>{{avg_.time_sum|duration_format}}</td>
+            </tr>
+            <tr style="background-color:#808080;font-weight:bold;">
+                <!--<td></td>-->
+                <td>总和</td>
+                <td></td>
+                <td></td>
+                <td>{{sum_.times_sum|default_if_none:""}} </td>
+                <td>{{sum_.times_in|default_if_none:""}} </td>
+                <td>{{sum_.times_out|default_if_none:""}} </td>
+                <td>{{sum_.times_record|default_if_none:""}}</td>
+                <td>{{sum_.times_miss|default_if_none:""}} </td>
+                <td>{{sum_.times_lt2min|default_if_none:""}}</td>
+                <td>{{sum_.times_nor|default_if_none:""}} </td>
+                <td>{{sum_.times_sell|default_if_none:""}}</td>
+                <td>{{sum_.times_other|default_if_none:""}} </td>
+                <td>{{sum_.time_sum|duration_format}}</td>
+            </tr>
+
+		</tbody>
+	</table>
+	</div>
+	<div class="panelBar">
+		<div class="pages">
+			<!--<span>显示</span>-->
+			<!--<select class="combox"  name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value},'userBox')">-->
+				<!--<option value="1">1</option>-->
+				<!--<option value="2">2</option>-->
+				<!--<option value="5">5</option>-->
+				<!--<option value="10">10</option>-->
+			<!--</select>-->
+			<span>每页{{numPerPage}}条,共{{totalCount}}条,共{{pageCount}}页</span>
+		</div>
+		<div class="pagination" rel="mana_statis_Box" totalCount={{totalCount}} numPerPage={{numPerPage}} pageNumShown={{pageNumShown}} currentPage={{currentPage}}></div>
+
+	</div>
+</div>

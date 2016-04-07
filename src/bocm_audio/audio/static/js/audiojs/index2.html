@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>audio.js</title>
+    <script>var _gaq=[['_setAccount','UA-20257902-1'],['_trackPageview']];(function(d,t){ var g=d.createElement(t),s=d.getElementsByTagName(t)[0]; g.async=1;g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+    <script src="./audiojs/audio.min.js"></script>
+    <link rel="stylesheet" href="./includes/index.css" media="screen">
+    <script>
+      audiojs.events.ready(function() {
+        audiojs.createAll();
+      });
+    </script>
+  </head>
+  <body>
+    <h1>audiojs.createAll()</h1>
+    <p>Load from remote URL</p>
+    <audio preload="auto">
+      <source src="http://cdn02.cdn.gorillavsbear.net/wp-content/uploads/2010/11/gorilla-vs.-bear-november-2010.mp3">
+    </audio>
+
+    <p>Load local file</p>
+    <audio preload="auto">
+      <source src="http://kolber.github.io/audiojs/demos/mp3/juicy.mp3">
+    </audio>
+
+    <p>Load failure (from source)</p>
+    <audio preload="auto">
+      <source src="http://kolber.github.io/audiojs/demos/mp3/juicyz.mp3">
+    </audio>
+  </body>
+</html>

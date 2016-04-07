@@ -1,0 +1,132 @@
+{% load audio_extras %}
+<script type="text/javascript">
+    function export_excel(){
+        if(confirm(" 您确定要导出到excel吗?")){
+            var inputs = $("#terminalForm").serialize();
+            var url = '/terminals_export/?'+inputs;
+            location.href = url;
+            window.event.returnValue = false;
+        };
+    }
+</script>
+
+<form id="pagerForm" method="get" action="#rel#">
+	<input type="hidden" name="pageNum" value={{currentPage}} />
+	<input type="hidden" name="numPerPage" value={{numPerPage}} />
+	<input type="hidden" name="orderField" value="${param.orderField}" />
+	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+</form>
+
+<div class="pageHeader">
+	<form rel="pagerForm" id="terminalForm" onsubmit="return divSearch(this, 'terminalBox');"  action="/terminal_search/" method="post">
+	{% csrf_token %}
+	<div class="searchBar">
+        <table class="searchContent">
+            <tr>
+                <td>
+ 					<input type="hidden" name="tree_select_org_id" value='{{tree_select_org_id|default_if_none:""}} '>
+                    话机编号：<input type="text" name="terminal_user" value="{{terminal_user}}"/>
+                </td>
+                <td>
+                    员工名称：<input type="text" name="terminal_employee" value="{{terminal_employee}}"/>
+                </td>
+                <td>
+                    地址：<input type="text" name="terminal_addr" value="{{terminal_addr}}"/>
+                </td>
+                <td>
+                    <div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div>
+                </td>
+            </tr>
+        </table>
+	
+		<div class="subBar">
+			<ul>
+				<!--<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>-->
+				<!--<li><a class="button" href="demo_page6.html" target="dialog" mask="true" title="查询框"><span>高级检索</span></a></li>-->
+			</ul>
+		</div>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="/terminal_add/?opMethod=add&parent_org_id={{tree_select_org_id}}" height="380" target="dialog" rel="terminal_add" mask="true"  title="添加终端"><span>添加终端</span></a></li>
+			<!--<li><a title="确实要删除这些记录吗?" target="selectedTodo" rel="terminal_ids" href="/terminal_deletemany/" class="delete"><span>批量删除默认方式</span></a></li>-->
+			<!--<li><a title="确实要删除这些记录吗?" target="selectedTodo" rel="terminal_ids" postType="string" href="demo/common/ajaxDone.html" class="delete"><span>批量删除逗号分隔</span></a></li>-->
+			<li><a class="edit" href="/terminal_add/?opMethod=edit&id={sid_user}" height="380" target="dialog"  rel="terminal_edit" mask="true" warn="请选择一个终端"><span>修改</span></a></li>
+			<li class="line">line</li>
+			<li><a class="icon" href="javascript:void(0);"  onclick="export_excel()" ><span>导出EXCEL</span></a></li>
+		</ul>
+	</div>
+
+    <div style="width: 99%;">
+        <table class="table" width="1000px" layoutH="150">
+		<thead>
+			<tr>
+				<!--<th width="20"><input type="checkbox" group="terminal_ids" class="checkboxCtrl"></th>-->
+                <th width="20">编号</th>
+                <th width="40">操作</th>
+				<th width="50">话机编号</th>
+                <th width="50">客户经理姓名</th>
+                <th width="50">联系电话</th>
+                <th width="50">最后登入</th>
+                <th width="50">所属机构</th>
+				<th width="50">地址</th>
+
+				<th width="50">邮编</th>
+
+                <th width="50">附属信息</th>
+                <th width="50">创建者</th>
+                <th width="50">创建时间</th>
+                <!--<th width="50">状态</th>-->
+
+
+			</tr>
+		</thead>
+		<tbody>
+            {% for terminal in obj_list %}
+			<tr target="sid_user" rel={{terminal.id}}>
+				<!--<td><input name="terminal_ids" value={{terminal.id}} type="checkbox"></td>-->
+				<td>{% serial_number currentPage numPerPage forloop.counter %}</td>
+                <td>
+                    <a title="删除" target="ajaxTodo" href="/terminal_delete/?id={{terminal.id}}" class="btnDel">删除</a>
+                    <a title="编辑" target="dialog" height="380" href="/terminal_add/?opMethod=edit&id={{terminal.id}}" class="btnEdit">编辑</a>
+                </td>
+				<td>{{terminal.user}}</td>
+                <td>{{terminal.employee|default_if_none:""}}</td>
+                <td>{{terminal.phone|default_if_none:""}} </td>
+                <td>{{terminal.regtime|date:"Y-m-d H:m:s"}} </td>
+                <td>{{terminal.org|default_if_none:""}}</td>
+				<td>{{terminal.address|default_if_none:""}} </td>
+
+                <td>{{terminal.postcode|default_if_none:""}} </td>
+
+                <td>{{terminal.addition|default_if_none:""}} </td>
+                <td>{{terminal.creator|default_if_none:""}} </td>
+                <td>{{terminal.createtime|date:"Y-m-d H:m:s"}}</td>
+                <!--<td>{{terminal.get_status_display}} </td>-->
+
+
+			</tr>
+            {% endfor %}
+
+
+		</tbody>
+	</table>
+	</div>
+	<div class="panelBar">
+		<div class="pages">
+			<!--<span>显示</span>-->
+			<!--<select class="combox"  name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value},'terminalBox')">-->
+				<!--<option value="1">1</option>-->
+				<!--<option value="2">2</option>-->
+				<!--<option value="5">5</option>-->
+				<!--<option value="10">10</option>-->
+			<!--</select>-->
+			<span>每页{{numPerPage}}条,共{{totalCount}}条,共{{pageCount}}页</span>
+		</div>
+		<div class="pagination" rel="terminalBox" totalCount={{totalCount}} numPerPage={{numPerPage}} pageNumShown={{pageNumShown}} currentPage={{currentPage}}></div>
+
+	</div>
+</div>

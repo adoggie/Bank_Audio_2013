@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0062)http://www.digitalpreservation.gov/formats/fdd/fdd000260.shtml -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title>Ogg Speex Audio Format</title>
+		<meta http-equiv="Content-Type" content="text/html; character=UTF-8">
+		<meta http-equiv="Content-Style-Type" content="text/css">
+		<meta name="description" content="Format Description for Ogg_SPX -- File format and bitstream encoding for for spoken content, targeted at a wide range of devices other than mobile phones.">
+		<meta name="keywords" content="">
+		<link rel="stylesheet" type="text/css" href="./Ogg Speex Audio Format_files/deog.css" media="screen">
+		<script language="JavaScript" type="text/javascript">
+			<!--
+					var ANewWindow = null; //new
+					function openPWindow(theURL, winName, features) { //v2.0
+						// check if window already exists
+						if (!ANewWindow || ANewWindow.closed) {
+							// store new ANewWindow in global var
+							ANewWindow = window.open("phprint.php","Print","status=yes,scrollbars=yes,resizable=yes,toolbar=yes,menubar=yes,location=yes,width=600,height=600");
+						} else {
+							ANewWindow.location = theURL;
+							ANewWindow.focus();
+						}
+					}
+					-->
+		</script>
+		<script type="text/javascript" src="./Ogg Speex Audio Format_files/triggerParams.js"></script>
+		<script type="text/javascript" src="./Ogg Speex Audio Format_files/stdLauncher.js"></script>
+		<script type="text/javascript">Poll();</script>
+	<script type="text/javascript" src="./Ogg Speex Audio Format_files/foresee-trigger.js"></script><script src="./Ogg Speex Audio Format_files/foresee-surveydef.js" type="text/javascript" id="foresee-surveydef"></script></head>
+	<body>
+		<!--This FDD was generated based on an XML master of the FDD schema and using an XSLT transformation.-->
+		
+<!-- begin page header -->
+
+
+	<table cellpadding="3" cellspacing="0" border="0" width="100%" class="header-bg">
+        <tbody><tr valign="top">
+          <td class="header">&nbsp;</td>
+          <td align="right"> 
+            <div align="right" class="header"><a href="http://www.digitalpreservation.gov/">NDIIPP Home</a> | <a href="http://www.digitalpreservation.gov/formats/index.shtml">Digital Formats Home</a>&nbsp;&nbsp;&nbsp;</div>
+          </td>
+        </tr>
+     </tbody></table>
+	 
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="title-bg">
+	<tbody><tr>
+      <td class="title-bg" align="left" valign="middle">
+<h1>&nbsp;<a href="http://www.digitalpreservation.gov/formats/index.shtml">Sustainability of Digital Formats<br>&nbsp;Planning for Library of Congress Collections</a></h1>
+</td>
+
+<td align="right" class="form">
+<form action="http://search.loc.gov:8765/query.html" class="form">
+<input id="searchbox" type="text" name="qt" size="15" maxlength="150" class="formtext"> 
+<input type="submit" class="go" value="Go">
+<input type="hidden" name="col" value="loc">
+<input type="hidden" name="qp" value="url:www.digitalpreservation.gov/formats">
+<input type="hidden" name="ws" value="0">
+<input type="hidden" name="la" value="en">
+<input type="hidden" name="qm" value="0">
+<input type="hidden" name="st" value="1">
+<input type="hidden" name="nh" value="10">
+<input type="hidden" name="lk" value="1">
+<input type="hidden" name="rf" value="0">
+<input type="hidden" name="oq" value="">
+<input type="hidden" name="rq" value="0">
+<input type="hidden" name="si" value="0">
+</form>
+</td>
+ </tr>
+		
+        <tr> 
+          <td colspan="2" class="empty-space-format"><img src="./Ogg Speex Audio Format_files/horzgif.gif" alt="" width="100%" height="2"></td>
+        </tr>
+		<tr>
+    <td colspan="2" class="formatNav"><a href="http://www.digitalpreservation.gov/formats/intro/intro.shtml">Introduction</a> | <a href="http://www.digitalpreservation.gov/formats/sustain/sustain.shtml">Sustainability Factors</a> | <a href="http://www.digitalpreservation.gov/formats/content/content_categories.shtml">Content Categories</a> | 
+	<a href="http://www.digitalpreservation.gov/formats/fdd/descriptions.shtml">Format Descriptions</a> | <a href="http://www.digitalpreservation.gov/formats/contact_format.shtml">Contact</a></td>
+  </tr>
+<!--
+  <tr>
+    <td height="20" colspan="3" align="right" bgcolor="#ffffff"> <a href="http://www.digitalpreservation.gov/formats/phprint_formats.php" target="Print" onClick="openPWindow(); ANewWindow.focus();" class="xsmall"><img src="http://www.digitalpreservation.gov/formats/print.gif" alt="Printer-friendly version" border="0" align="middle">Printer-friendly version</a>&nbsp;&nbsp;&nbsp;</td>
+  </tr>-->
+      </tbody></table>
+		
+<!-- end page header -->
+		<!--begin body area -->
+		<!-- startprint -->
+		<div class="fdd"><a href="http://www.digitalpreservation.gov/formats/fdd/descriptions.shtml"><b>Format Description Categories</b></a> &gt;&gt; 
+					<a href="http://www.digitalpreservation.gov/formats/fdd/browse_list.shtml">Browse Alphabetical List</a><div class="sectionhead"><a name="top"></a><h2>Ogg Speex Audio Format</h2>
+			</div><a href="javascript:history.back()" class="xsmall">&gt;&gt; Back</a><div class="toc"><b>Table of Contents</b><ul>
+					<li class="first"><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000260.shtml#identification">Identification and description</a></li>
+					<li><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000260.shtml#local">Local use</a></li>
+					<li><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000260.shtml#sustainability">Sustainability factors</a></li>
+					<li><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000260.shtml#factors">Quality and functionality factors</a></li>
+					<li><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000260.shtml#sign">File type signifiers</a></li>
+					<li><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000260.shtml#notes">Notes</a></li>
+					<li><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000260.shtml#specs">Format specifications</a></li>
+					<li class="last"><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000260.shtml#useful">Useful references</a></li>
+				</ul>
+			</div>
+			<div class="document"><b>
+							Format Description Properties
+							<a href="http://www.digitalpreservation.gov/formats/fdd/fdd_explanation.shtml"><img alt="Explanation of format description terms" title="Explanation of format description terms" src="./Ogg Speex Audio Format_files/info.gif" border="0" vspace="0"></a></b><ul>
+					<li class="first">ID: fdd000260</li>
+					<li>Short name: Ogg_SPX</li>
+					<li>Content categories: 
+								sound</li>
+					<li>Format Category:
+								file-format, encoding</li>
+					<li>Other facets: 
+								binary, sampled</li>
+					<li>Last significant update:
+								2008-02-19</li>
+					<li class="last">Draft status: Full</li>
+				</ul>
+			</div><br clear="all"><a name="identification"></a><h3>Identification and description 
+						<a href="http://www.digitalpreservation.gov/formats/fdd/fdd_explanation.shtml#identification"><img alt="Explanation of format description terms" title="Explanation of format description terms" src="./Ogg Speex Audio Format_files/info.gif" border="0" vspace="0"></a></h3>
+			<table border="1" cellspacing="0" cellpadding="2" width="90%" summary="The Identification and Description table lists the name of the format, a brief description, and relationships to other formats.">
+				<tbody>
+					<tr>
+						<th scope="row" width="30%" valign="top">Full name</th>
+						<td valign="top">Ogg Speex Audio Format</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Description</th>
+						<td valign="top">File format and bitstream encoding for for spoken content, targeted at a wide range of devices other than mobile phones.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Production phase</th>
+						<td valign="top">Generally used for final-state, end-user delivery.</td>
+					</tr>
+					<tr>
+						<th class="subhead" scope="col" colspan="2">Relationship to other formats</th>
+					</tr>
+					<tr>
+						<th scope="row" width="30%">
+					&nbsp;&nbsp;&nbsp;&nbsp;Subtype of</th>
+						<td><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000026.shtml">Ogg</a>, 
+						Ogg File Format</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%">
+					&nbsp;&nbsp;&nbsp;&nbsp;Contains</th>
+						<td><a href="http://www.digitalpreservation.gov/formats/fdd/fdd000259.shtml">SPX_1_2</a>, 
+						Speex Audio Codec, Version 1.2</td>
+					</tr>
+				</tbody>
+			</table><br><a name="local"></a><h3>Local use 
+						<a href="http://www.digitalpreservation.gov/formats/fdd/fdd_explanation.shtml#local"><img alt="Explanation of format description terms" title="Explanation of format description terms" src="./Ogg Speex Audio Format_files/info.gif" border="0" vspace="0"></a></h3>
+			<table border="1" cellspacing="0" cellpadding="2" width="90%" summary="The Local Use table lists any actual practice, historical use, or stated preference for this format at the Library of Congress.">
+				<tbody>
+					<tr>
+						<th scope="row" width="30%" valign="top">LC experience or existing holdings</th>
+						<td valign="top">None.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">LC preference</th>
+						<td valign="top">None.  For preservation reformatting, the Library prefers Broadcast WAVE (<a href="http://www.digitalpreservation.gov/formats/fdd/fdd000356.shtml">WAVE_BWF_1</a> and <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000357.shtml">WAVE_BWF_2</a>).</td>
+					</tr>
+				</tbody>
+			</table><br><a name="sustainability"></a><h3>Sustainability factors
+						<a href="http://www.digitalpreservation.gov/formats/fdd/fdd_explanation.shtml#sustainability"><img alt="Explanation of format description terms" title="Explanation of format description terms" src="./Ogg Speex Audio Format_files/info.gif" border="0" vspace="0"></a></h3>
+			<table border="1" cellspacing="0" cellpadding="2" width="90%" summary="The Sustainability Factors table provides a list of notes that analyze this format in terms of factors that influence the likely feasibility and cost of preserving information against technological obsolescence.">
+				<tbody>
+					<tr>
+						<th scope="row" width="30%" valign="top">Disclosure</th>
+						<td valign="top">Developed by <a href="http://www.xiph.org/">xiph</a> as an open source and patent-free project.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;Documentation</th>
+						<td valign="top">See <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000026.shtml">Ogg</a> and <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000259.shtml">SPX_1_2</a>.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Adoption</th>
+						<td valign="top">See <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000026.shtml">Ogg</a>.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;Licensing and patents</th>
+						<td valign="top">See <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000259.shtml">SPX_1_2</a>.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Transparency</th>
+						<td valign="top">See <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000259.shtml">SPX_1_2</a>.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Self-documentation</th>
+						<td valign="top">See <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000026.shtml">Ogg</a>.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">External dependencies</th>
+						<td valign="top">None.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Technical protection considerations</th>
+						<td valign="top">See <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000026.shtml">Ogg</a>.</td>
+					</tr>
+				</tbody>
+			</table><br><a name="factors"></a><h3>Quality and functionality factors
+						<a href="http://www.digitalpreservation.gov/formats/fdd/fdd_explanation.shtml#factors"><img alt="Explanation of format description terms" title="Explanation of format description terms" src="./Ogg Speex Audio Format_files/info.gif" border="0" vspace="0"></a></h3>
+			<table border="1" cellspacing="0" cellpadding="2" width="90%" summary="The Quality and Functionality Factors table assesses the format in relation to functional support for features and aspects that can affect the quality of content (such as bit-depth for representation of color or sound).">
+				<tbody>
+					<tr>
+						<th class="subhead" scope="col" colspan="2">Sound</th>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Normal rendering</th>
+						<td valign="top">Good support.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Fidelity (high audio resolution)</th>
+						<td valign="top">See <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000259.shtml">SPX_1_2</a>.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Multiple channels</th>
+						<td valign="top">See <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000259.shtml">SPX_1_2</a>.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Support for user-defined sounds, samples, and patches</th>
+						<td valign="top">None.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">Functionality beyond normal rendering</th>
+						<td valign="top">Not investigated at this time.</td>
+					</tr>
+				</tbody>
+			</table><br><a name="sign"></a><h3>File type signifiers
+						<a href="http://www.digitalpreservation.gov/formats/fdd/fdd_explanation.shtml#sign"><img alt="Explanation of format description terms" title="Explanation of format description terms" src="./Ogg Speex Audio Format_files/info.gif" border="0" vspace="0"></a></h3>
+			<table border="1" cellspacing="0" cellpadding="2" width="90%" summary="The File Type Signifiers table documents some of the signifiers that may be used by automated systems to identify or characterize a file or the data encodings contained within a file.">
+				<tbody>
+					<tr>
+						<th scope="col">Tag</th>
+						<th scope="col">Value</th>
+						<th scope="col">Note</th>
+					</tr>
+					<tr>
+						<th scope="row" width="15%" valign="top">Filename extension</th>
+						<td width="15%" valign="top">spx<br></td>
+						<td valign="top">The <a href="http://www.speex.org/docs/manual/speex-manual.pdf">specification</a> states that Speex tools (speexenc, speexdec) do not rely on the extension; any extension will work.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="15%" valign="top">Internet Media Type</th>
+						<td width="15%" valign="top">audio/x-speex<br></td>
+						<td valign="top">For Speex-in-Ogg, from the main part of the <a href="http://www.speex.org/docs/manual/speex-manual.pdf">specification</a>.  However, the recommended practice now seems to use the codecs parameter as described in <a href="http://www.rfc-editor.org/rfc/rfc5334.txt">RFC 5334</a>.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="15%" valign="top">Internet Media Type</th>
+						<td width="15%" valign="top">audio/ogg; codecs=speex
+
+<br></td>
+						<td valign="top">From <a href="http://www.rfc-editor.org/rfc/rfc5334.txt">RFC 5334</a>.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="15%" valign="top">Internet Media Type</th>
+						<td width="15%" valign="top">audio/speex<br></td>
+						<td valign="top">Proposed in various drafts of <i>RTP Payload Format for the Speex Codec</i>. e.g., http://www.ietf.org/internet-drafts/draft-ietf-avt-rtp-speex-05.txt (obsolete and hence not actively linked from this format description).</td>
+					</tr>
+					<tr>
+						<th scope="row" width="15%" valign="top">Magic numbers</th>
+						<td width="15%" valign="top">Hex: 4F 67 67 53 00 02 00 00 00 00 00 00 00 00<br>ASCII: OggS<br></td>
+						<td valign="top">See also <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000260.shtml#notes">Notes</a> below.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="15%" valign="top">Other</th>
+						<td width="15%" valign="top">Speex   <br></td>
+						<td valign="top">Ogg Codec Identifier.  An 8-character string, with 3 trailing spaces, used within <a href="http://www.digitalpreservation.gov/formats/fdd/fdd000026.shtml">Ogg</a> container, at beginning of first header page to identify codec.  See notes below and <a href="http://www.rfc-editor.org/rfc/rfc5334.txt">IETF RFC 5334</a></td>
+					</tr>
+				</tbody>
+			</table><br><a name="notes"></a><h3>Notes
+						<a href="http://www.digitalpreservation.gov/formats/fdd/fdd_explanation.shtml#notes"><img alt="Explanation of format description terms" title="Explanation of format description terms" src="./Ogg Speex Audio Format_files/info.gif" border="0" vspace="0"></a></h3>
+			<table border="1" cellspacing="0" cellpadding="2" width="90%" summary="The Notes table includes informative notes about the format that do not fit elsewhere in the Format Description Document.">
+				<tbody>
+					<tr>
+						<th scope="row" width="30%" valign="top">General</th>
+						<td valign="top">Regarding file type signifiers, from the <a href="http://www.speex.org/docs/manual/speex-manual.pdf">Speex specification</a>: The first packet of the Ogg_SPX file contains the Speex header [presented in table 7.1 on page 25]. All integer fields in the headers are stored as little-endian. The speex_string field must contain the [Speex with 3 trailing spaces], which identifies the bit-stream. The next field, speex_version contains the version of Speex that encoded the file. For now, refer to speex_header.[ch] for more info. The beginning of stream (b_o_s) flag is set to 1 for the header. The header packet has packetno=0 and granulepos=0. The second packet contains the Speex comment header. The format used is the Vorbis comment format described here: <a href="http://xiph.org/vorbis/doc/v-comment.html">http://xiph.org/vorbis/doc/v-comment.html</a>. This packet has packetno=1 and granulepos=0. The third and subsequent packets each contain one or more (number found in header) Speex frames. These are identified with packetno starting from 2 and the granulepos is the number of the last sample encoded in that packet. The last of these packets has the end of stream (e_o_s) flag is set to 1.</td>
+					</tr>
+					<tr>
+						<th scope="row" width="30%" valign="top">History</th>
+						<td valign="top">&nbsp;</td>
+					</tr>
+				</tbody>
+			</table><br><a name="specs"></a><h3>Format specifications 
+						<a href="http://www.digitalpreservation.gov/formats/fdd/fdd_explanation.shtml#specs"><img alt="Explanation of format description terms" title="Explanation of format description terms" src="./Ogg Speex Audio Format_files/info.gif" border="0" vspace="0"></a></h3>
+			<ul>
+				<li><a href="http://www.xiph.org/vorbis/doc/">Ogg Vorbis documentation menu</a> (http://www.xiph.org/vorbis/doc/).&nbsp;Includes general information about Ogg files.</li>
+				<li><a href="http://www.speex.org/docs/manual/speex-manual.pdf">The Speex Codec Manual,
+Version 1.3 Beta 3, December 8, 2007</a> (http://www.speex.org/docs/manual/speex-manual.pdf).</li>
+				<li><a href="http://www.rfc-editor.org/rfc/rfc5334.txt">IETF RFC 5334,  Ogg Media Types</a> (http://www.rfc-editor.org/rfc/rfc5334.txt).</li>
+			</ul><br><a name="useful"></a><h3>Useful references</h3><b>URLs</b><br><ul>
+				<li><a href="http://www.xiph.org/vorbis/doc/oggstream.html">Ogg logical and physical bitstream overview</a> (http://www.xiph.org/vorbis/doc/oggstream.html).</li>
+				<li><a href="http://www.xiph.org/vorbis/doc/framing.html">Ogg logical bitstream framing</a> (http://www.xiph.org/vorbis/doc/framing.html).</li>
+			</ul><br><!-- stopprint --><br><div align="right" class="update">Last Updated: 
+				
+				Friday, 26-Oct-2012 15:17:18 EDT
+			</div><br></div>
+		<!-- end body area -->
+		<!-- begin footer table -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr> 
+    <td class="footer-bg"> 
+	<table cellpadding="3" cellspacing="0" border="0" width="100%" class="header-bg">
+        <tbody><tr valign="top">
+          <td class="header">&nbsp;</td>
+          <td align="right"> 
+            <div align="right" class="header"><a href="http://www.digitalpreservation.gov/">NDIIPP Home</a> | <a href="http://www.digitalpreservation.gov/formats/index.shtml">Digital Formats Home</a>&nbsp;&nbsp;&nbsp;</div>
+          </td>
+        </tr>
+     </tbody></table>
+	</td>
+  </tr>
+</tbody></table>
+<!-- end footer table -->
+
+	<script type="text/javascript" src="./Ogg Speex Audio Format_files/s_code.js"></script>
+</body></html>

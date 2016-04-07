@@ -1,0 +1,103 @@
+{% load static %}
+{% load url from future %}
+{% get_static_prefix as STATIC_PREFIX %}
+<script type="text/javascript" >
+    function org_dialogAjaxDone(json){
+        DWZ.ajaxDone(json);
+        if (json.statusCode == DWZ.statusCode.ok){
+            if (json.navTabId){
+                navTab.reload(json.forwardUrl, {navTabId: json.navTabId});
+            } else if (json.rel) {
+                var $pagerForm = $("#pagerForm", navTab.getCurrentPanel());
+                var args = $pagerForm.size()>0 ? $pagerForm.serializeArray() : {}
+                navTabPageBreak(args, json.rel);
+            }
+            if ("closeCurrent" == json.callbackType) {
+                $.pdialog.closeCurrent();
+            }
+            var zTree = $.fn.zTree.getZTreeObj("org_tree");
+            if(zTree){
+                if(json.opMethod=="add"){
+                    var parent_id = json.parent_id;
+                    var parentNode = zTree.getNodeByParam("id",parent_id, null);
+                    if(parentNode){
+                        var new_node ={
+                            id:json.orgId,
+                            pId:parentNode.id,
+                            name:json.orgName,
+//                        obj_id:orgs_tree[i].fields.obj_id,
+                            icon:"{{STATIC_PREFIX}}js/ztree_v3.5.12/css/zTreeStyle/img/diy/org.png",
+                            selfUrl:"{% url 'org_list' %}",
+                            selfRel:"orgBox",
+                            selfTarget:'ajax'
+                        };
+                        zTree.addNodes(parentNode,new_node );
+                    }
+                }else if(json.opMethod=="edit"){
+                    var editNode =  zTree.getNodeByParam("id",json.orgId, null);
+                    editNode.name = json.orgName;
+                    zTree.updateNode(editNode);
+
+                }
+
+
+
+
+            }
+
+        }
+    }
+
+</script>
+
+<div class="pageContent">
+	<form method="post" action="/org_add/" class="pageForm required-validate" onsubmit="return validateCallback(this, org_dialogAjaxDone);">
+	{% csrf_token %}
+
+		<div class="pageFormContent" layoutH="56">
+	
+			<p>
+				<label>所属机构：</label>
+                {% ifequal opMethod "add" %}
+                <input type="hidden" name="org_parent.id" value={{parent_org.id}} />
+                <input type="text" class="" name="org_parent.name" value={{parent_org.name}} readonly="readonly" />
+                {% else %}
+                <input type="hidden" name="org_parent.id" value="{{org.parent.id}}"/>
+                <input type="text" class="" name="org_parent.name" value="{{org.parent|default_if_none:''}}" readonly="readonly" />
+                {% endifequal %}
+			</p>
+			<p>
+				<label>机构名称：</label>
+                <input type="hidden" name="id" value="{{org.id}}"/>
+				<input name="name" class="required" type="text" size="30" value="{{org.name|default_if_none:''}}" alt=""/>
+			</p>
+            <p>
+                <label>机构编号：</label>
+                <input name="org_sid"  maxlength="20" class="" type="text" size="30" value="{{org.org_sid|default_if_none:''}}" alt=""/>
+            </p>
+			<p>
+				<label>联系方式：</label>
+				<input name="phone" class="" type="text" size="30" value="{{org.phone|default_if_none:''}}"  maxlength="20" alt=""/>
+			</p>
+			<p>
+				<label>详细地址：</label>
+				<input name="address" class="" type="text" size="30" value="{{org.address|default_if_none:''}}" maxlength="200" alt=""/>
+			</p>
+			<p>
+				<label>说明：</label>
+                <textarea name="memo" cols="30" rows="3">{{org.memo|default_if_none:''}}</textarea>
+			</p>
+
+
+		</div>
+		<div class="formBar">
+			<ul>
+				<!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

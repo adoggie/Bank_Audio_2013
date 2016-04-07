@@ -1,0 +1,35 @@
+1.安装apache软件
+2.将mod_wsgi-win32-ap22py26-3.3.so复制到apache的modules的目录下
+	在http.conf 添加LoadModule wsgi_module modules/mod_wsgi-win32-ap22py26-3.3.so
+3.
+Listen 81
+Include conf/extra/httpd-vhosts.conf
+NameVirtualHost *:81
+
+4.在httpd-vhosts.conf中做如下配置,对应的目录请自己更改.
+
+<VirtualHost *:81>
+    ServerName    localhost
+    DocumentRoot  "D:/project_now/OurTomorrowLikeTheSun/SVN/leadtel_audio/trunk/src/bocm_audio/"
+	DirectoryIndex index.html index.html.var index.cgi
+	# 设置root，不要使用"^/"
+	WSGIScriptAlias / "D:/project_now/OurTomorrowLikeTheSun/SVN/leadtel_audio/trunk/src/bocm_audio/apache/django.wsgi"
+
+</VirtualHost>
+
+
+Alias /static/ "D:/project_now/OurTomorrowLikeTheSun/SVN/leadtel_audio/trunk/src/bocm_audio/static_all/"
+<Directory "D:/project_now/OurTomorrowLikeTheSun/SVN/leadtel_audio/trunk/src/bocm_audio/static_all/">
+    Order allow,deny
+    Options Indexes
+    Allow from all
+    IndexOptions FancyIndexing
+</Directory>
+
+Alias /media/ "D:/project_now/OurTomorrowLikeTheSun/SVN/leadtel_audio/trunk/src/bocm_audio/media/"
+<Directory "D:/project_now/OurTomorrowLikeTheSun/SVN/leadtel_audio/trunk/src/bocm_audio/media/">
+    Order allow,deny
+    Options Indexes
+    Allow from all
+    IndexOptions FancyIndexing
+</Directory>
