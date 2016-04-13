@@ -2,5 +2,6 @@
 交通银行数字语音管理系统
 
 demo  
- <img href="doc/shot-screen/001.jpg"> 
- 
+ <img src="doc/shot-screen/001.jpg"> 
+ <br><br>
+ <img src="doc/shot-screen/002.jpg"> 
